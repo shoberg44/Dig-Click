@@ -27,16 +27,6 @@
                                     <segue destination="xfA-a0-POU" kind="show" identifier="mineSeque" id="NeU-gD-PLp"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-Bc-ihA">
-                                <rect key="frame" x="36.000000000000007" y="287" width="94.666666666666671" height="34.333333333333336"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTw-2z-nvu">
-                                        <rect key="frame" x="0.0" y="0.0" width="94.666666666666671" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Inventory"/>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dig Click" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bx8-7Y-EXh">
                                 <rect key="frame" x="16" y="91" width="358" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -46,6 +36,45 @@
                                 <color key="shadowColor" systemColor="systemBrownColor"/>
                                 <size key="shadowOffset" width="2" height="3"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-Bc-ihA">
+                                <rect key="frame" x="0.0" y="405" width="390.66666666666669" height="34.333333333333336"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTw-2z-nvu">
+                                        <rect key="frame" x="0.0" y="0.0" width="94.666666666666671" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Inventory"/>
+                                        <connections>
+                                            <segue destination="FUU-n5-OfU" kind="show" id="8l9-4k-6u8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MM4-Ax-mw3">
+                                        <rect key="frame" x="98.666666666666657" y="0.0" width="94.666666666666657" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Store"/>
+                                        <connections>
+                                            <segue destination="2tC-Qv-kug" kind="show" id="vdR-nB-I0W"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuY-8D-PzX">
+                                        <rect key="frame" x="197.33333333333334" y="0.0" width="94.666666666666657" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Market"/>
+                                        <connections>
+                                            <segue destination="o5k-NW-vfg" kind="show" id="a6q-6t-Mki"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1b-BZ-1ga">
+                                        <rect key="frame" x="296" y="0.0" width="94.666666666666686" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Share"/>
+                                        <connections>
+                                            <segue destination="fOS-na-D5u" kind="show" id="aDD-vf-a0g"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="separatorColor"/>
+                                <color key="tintColor" systemColor="tertiarySystemBackgroundColor"/>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -55,6 +84,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1106.1538461538462" y="31.279620853080566"/>
+        </scene>
+        <!--Inventory-->
+        <scene sceneID="hc6-p6-qFR">
+            <objects>
+                <viewController title="Inventory" id="FUU-n5-OfU" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="px9-p0-6oN">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ZKU-PD-SQO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Dy0-0H-vpv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nZY-0S-U05" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1105" y="-2508"/>
         </scene>
         <!--The Mine-->
         <scene sceneID="B9f-Rk-Oo3">
@@ -102,7 +147,79 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2026.1538461538462" y="31.279620853080566"/>
+            <point key="canvasLocation" x="2011" y="31"/>
+        </scene>
+        <!--Market-->
+        <scene sceneID="EfC-7J-bFN">
+            <objects>
+                <viewController title="Market" id="o5k-NW-vfg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Eau-PF-1cN">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4LC-mW-a4v">
+                                <rect key="frame" x="130" y="707" width="131" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2vp-Sd-cpX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zJv-XC-Ra1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ljC-CK-Fnk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1106" y="-1237"/>
+        </scene>
+        <!--Share-->
+        <scene sceneID="1WR-Jp-cCL">
+            <objects>
+                <viewController title="Share" id="fOS-na-D5u" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q4G-rr-Idm">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AsH-qk-4zd">
+                                <rect key="frame" x="69" y="334" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nQY-de-lTd">
+                                <rect key="frame" x="155" y="335" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-dl-J2h">
+                                <rect key="frame" x="241" y="335" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Zt3-im-xqV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9UE-ci-42M"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6KG-8Z-QI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1104.6153846153845" y="-604.26540284360192"/>
+        </scene>
+        <!--Store-->
+        <scene sceneID="QUf-CY-zQM">
+            <objects>
+                <viewController title="Store" id="2tC-Qv-kug" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VcL-sp-Hyg">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="mjJ-aP-Dk0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VBd-gh-roY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a1s-hA-3UA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1105" y="-1871"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gzX-v4-zGX">
@@ -125,12 +242,20 @@
     </scenes>
     <resources>
         <image name="figure.taichi" catalog="system" width="106" height="128"/>
+        <image name="person.badge.plus" catalog="system" width="128" height="125"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="smiley" catalog="system" width="128" height="123"/>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
