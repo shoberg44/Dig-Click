@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5826BA96299731BE009F2500 /* RockObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5826BA95299731BE009F2500 /* RockObject.swift */; };
+		5826BA9829973DB4009F2500 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5826BA9729973DB4009F2500 /* Drop.swift */; };
 		E60FA261299531F8007EAF04 /* MineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60FA260299531F8007EAF04 /* MineView.swift */; };
 		E6E357232992909D00AEC80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E357222992909D00AEC80D /* AppDelegate.swift */; };
 		E6E357252992909D00AEC80D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E357242992909D00AEC80D /* SceneDelegate.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5826BA95299731BE009F2500 /* RockObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockObject.swift; sourceTree = "<group>"; };
+		5826BA9729973DB4009F2500 /* Drop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
 		E60FA260299531F8007EAF04 /* MineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineView.swift; sourceTree = "<group>"; };
 		E6E3571F2992909D00AEC80D /* Dig Click.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dig Click.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6E357222992909D00AEC80D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				E6E357262992909D00AEC80D /* ViewController.swift */,
 				E6E357282992909D00AEC80D /* Main.storyboard */,
 				E60FA260299531F8007EAF04 /* MineView.swift */,
+				5826BA95299731BE009F2500 /* RockObject.swift */,
+				5826BA9729973DB4009F2500 /* Drop.swift */,
 				E6E3572E2992909D00AEC80D /* Assets.xcassets */,
 				E6E357302992909D00AEC80D /* LaunchScreen.storyboard */,
 				E6E357332992909D00AEC80D /* Info.plist */,
@@ -267,7 +273,9 @@
 				E6E357272992909D00AEC80D /* ViewController.swift in Sources */,
 				E6E357232992909D00AEC80D /* AppDelegate.swift in Sources */,
 				E60FA261299531F8007EAF04 /* MineView.swift in Sources */,
+				5826BA96299731BE009F2500 /* RockObject.swift in Sources */,
 				E6E357252992909D00AEC80D /* SceneDelegate.swift in Sources */,
+				5826BA9829973DB4009F2500 /* Drop.swift in Sources */,
 				E6E3572D2992909D00AEC80D /* Dig_Click.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
