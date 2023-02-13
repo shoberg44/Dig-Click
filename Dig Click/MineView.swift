@@ -8,7 +8,7 @@
 import UIKit
 class Public{
     static var money: Double = 0
-    
+    static var inventory: [Drop] = []
 }
 class MineView: UIViewController {
     
@@ -45,20 +45,30 @@ class MineView: UIViewController {
         dropIcon.center = ore1Icon.center
         dropIcon.isHidden = false
         var time = 0.0
-        var first = false
         Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
-            if !self.dropIcon.frame.contains(CGPoint(x: self.dropIcon.center.x, y: 800)){
+            if !self.dropIcon.frame.contains(CGPoint(x: self.dropIcon.center.x, y: 780)){
                 time += 0.05
                 
                 self.dropIcon.center.y += pow(time, 2)*16+100*time-4 //gravity
-                //self.dropIcon.center.y += 10
             }
             else{
                 timer.invalidate()
-                self.dropIcon.isHidden = true
+                time = 0.5
+                var iterations = 0
+                Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer2 in
+                    iterations += 1
+                    
+                    time = time - 0.07
+                    self.dropIcon.center.y -= pow(time, 2)*16+100*time-4
+                    if iterations >= 14{
+                        self.dropIcon.isHidden = true
+                        timer2.invalidate()
+                    }
+                }
                 
             }
         }
+        
     }
     
         func updateView(){
