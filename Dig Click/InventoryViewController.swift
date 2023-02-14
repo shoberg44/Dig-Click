@@ -7,28 +7,29 @@
 
 import UIKit
 
-class InventoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class InventoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
-    @IBOutlet weak var tableOutlet: UITableView!
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @IBOutlet weak var collectionViewOutlet: UICollectionView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionViewOutlet.delegate = self
+        collectionViewOutlet.dataSource = self
+        Public.inventory.append(Drop(type: .pebble))
+        collectionViewOutlet.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Public.inventory.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
-        cell.textLabel?.text = Public.inventory[indexPath.row].name
-
-               return cell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! InventoryCell
+        cell.configure(name: Public.inventory[indexPath.row].name, value: Public.inventory[indexPath.row].value, icon: Public.inventory[indexPath.row].picture)
+        return cell
     }
+
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableOutlet.delegate = self
-        tableOutlet.dataSource = self
-        Public.inventory.append(Drop(type: .pebble))
-        tableOutlet.reloadData()
-    }
 
 }
