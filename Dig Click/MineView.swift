@@ -16,11 +16,12 @@ class MineView: UIViewController {
     @IBOutlet weak var moneyOutlet: UILabel!
     @IBOutlet weak var ore1Icon: UIImageView!
     @IBOutlet weak var pickIconOutlet: UIImageView!
-    let PICKDEFAULT: CGPoint = CGPoint(x: 196.0, y: 738.3)
+    let PICKDEFAULT: CGPoint = CGPoint(x: 196.0, y: 738.3) //constant
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dropIcon.isHidden = true
+        StoneRock().breakEvent()
         updateView()
     }
     
@@ -29,20 +30,17 @@ class MineView: UIViewController {
         pickIconOutlet.center = loc
         
         if (CGRectIntersectsRect(ore1Icon.frame, pickIconOutlet.frame)) {//detects collision
-            Public.money += 0.5 //function runs twice on collision so this actuallhy adds to 1
-            dropOre()
-            
+            Public.money += 0.5 //function runs twice on collision so this actually adds to 1
+            dropOre()//runs animation
             pickIconOutlet.center = PICKDEFAULT //resets posistion
             updateView()//updates view (just score for now)
-            
-            
             sender.state = .ended //ends drag
-            
         }
     }
     
     func dropOre(){
         dropIcon.center = ore1Icon.center
+        //dropIcon.image =
         dropIcon.isHidden = false
         var time = 0.0
         Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in

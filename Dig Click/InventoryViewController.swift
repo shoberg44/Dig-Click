@@ -16,7 +16,6 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         collectionViewOutlet.delegate = self
         collectionViewOutlet.dataSource = self
-        Public.inventory.append(Drop(type: .pebble))
         collectionViewOutlet.reloadData()
     }
     
