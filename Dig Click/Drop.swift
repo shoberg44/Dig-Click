@@ -63,6 +63,7 @@ public class Drop{
             weight = 1
             canSell = true
             isOre = true
+            picture = UIImage(systemName: "folder.fill")!
         case .copper:
             value = 1
             meltable = true
@@ -88,9 +89,9 @@ public class Drop{
             canSell = true
             isOre = true
         case .unknown:
-            value = 0
+            value = -1
             meltable = false
-            weight = 0
+            weight = -1
             canSell = false
             isOre = false
         }

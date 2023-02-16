@@ -16,12 +16,19 @@ class MineView: UIViewController {
     @IBOutlet weak var moneyOutlet: UILabel!
     @IBOutlet weak var ore1Icon: UIImageView!
     @IBOutlet weak var pickIconOutlet: UIImageView!
+    
     let PICKDEFAULT: CGPoint = CGPoint(x: 196.0, y: 738.3) //constant
+    
+    ///Rock Decaration
+    //when declaring, requires an both a CGPoint for "location" and an image for "icon"
+    //within specific rock type classes use imageSet[] to get images that corrispond to that type. The location used here is hard coded and should be proc generated in the future
+    
+    
+    var rock1 = StoneRock(icon: StoneRock.imageSet[0],location: CGPoint(x: 289.0, y: 401.0))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dropIcon.isHidden = true
-        StoneRock().breakEvent()
         updateView()
     }
     
@@ -30,17 +37,22 @@ class MineView: UIViewController {
         pickIconOutlet.center = loc
         
         if (CGRectIntersectsRect(ore1Icon.frame, pickIconOutlet.frame)) {//detects collision
+            
+            
+            
+            
             Public.money += 0.5 //function runs twice on collision so this actually adds to 1
-            dropOre()//runs animation
+            dropOre(rock1)//runs animation
             pickIconOutlet.center = PICKDEFAULT //resets posistion
             updateView()//updates view (just score for now)
             sender.state = .ended //ends drag
         }
     }
     
-    func dropOre(){
-        dropIcon.center = ore1Icon.center
-        //dropIcon.image =
+    func dropOre(_ rockNode: Rock){
+        let currentDrop = rockNode.breakEvent()
+        dropIcon.center = rockNode.location
+        dropIcon.image = currentDrop.picture
         dropIcon.isHidden = false
         var time = 0.0
         Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
