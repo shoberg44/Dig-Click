@@ -26,6 +26,8 @@ class MineView: UIViewController {
     
     var rock1 = StoneRock(icon: StoneRock.imageSet[0],location: CGPoint(x: 289.0, y: 401.0))
     
+    var repCount = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dropIcon.isHidden = true
@@ -33,27 +35,40 @@ class MineView: UIViewController {
     }
     
     @IBAction func pickPanGesture(_ sender: UIPanGestureRecognizer) {
-        let loc = sender.location(in: view)
-        pickIconOutlet.center = loc
-        
-        if (CGRectIntersectsRect(ore1Icon.frame, pickIconOutlet.frame)) {//detects collision
-            
-            
-            
-            
-            Public.money += 0.5 //function runs twice on collision so this actually adds to 1
-            dropOre(rock1)//runs animation
-            pickIconOutlet.center = PICKDEFAULT //resets posistion
-            updateView()//updates view (just score for now)
-            sender.state = .ended //ends drag
+        if !(sender.state == .ended){ //runs twice so it fixes that problem
+            let loc = sender.location(in: view)
+            pickIconOutlet.center = loc //puts image at drag gesture
+            if (CGRectIntersectsRect(ore1Icon.frame, pickIconOutlet.frame)) {//detects collision
+                sender.state = .ended //ends drag
+                intersectionEvent()
+            }
         }
+        
+        
+        
+        
+    }
+    
+    func intersectionEvent(){
+        Public.money += 1
+        dropOre(rock1)//runs animation + drop logic
+        pickIconOutlet.center = PICKDEFAULT //resets posistion
+        updateView()//updates view (just score for now)
     }
     
     func dropOre(_ rockNode: Rock){
-        let currentDrop = rockNode.breakEvent()
-        dropIcon.center = rockNode.location
-        dropIcon.image = currentDrop.picture
-        dropIcon.isHidden = false
+        if rockNode.type == .stone{
+            var tempRock = rockNode as! StoneRock
+            tempRock.recalculateDropChance()
+        }
+        var currentDrop = rockNode.breakEvent()//gets drop
+        print(currentDrop.name)
+        dropIcon.center = rockNode.location // set icon location
+        dropIcon.image = currentDrop.picture //set icon picture
+        Public.inventory.append(currentDrop)
+        
+        
+        dropIcon.isHidden = false //begins drop here
         var time = 0.0
         Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
             if !self.dropIcon.frame.contains(CGPoint(x: self.dropIcon.center.x, y: 780)){

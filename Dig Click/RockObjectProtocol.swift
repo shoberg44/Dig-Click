@@ -20,5 +20,8 @@ public protocol Rock{
     var type: rockType {get}
     var location: CGPoint {get set}
     var icon: UIImage {get set}
+    var dropChance: Int {get set}
     func breakEvent()->Drop
+    func recalculateDropChance()
+    
 }

@@ -51,4 +51,7 @@ class StoneRock: Rock{
         }
         return newDrop
     }
+    func recalculateDropChance(){
+        dropChance = Int.random(in: 0 ... 100)
+    }
 }
