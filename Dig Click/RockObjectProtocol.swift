@@ -12,6 +12,15 @@ public enum rockType: String {
     case sandstone = "sandstone"
     case geode = "geode"
 }
+
+public enum mountedType: String {
+    case left = "left"
+    case right = "right"
+    case floor = "floor"
+    case ceiling = "ceiling"
+    case unmounted = "unmounted"
+}
+
 public protocol Rock{
     static var imageSet: [UIImage] {get set}
     var health: Int { get set }

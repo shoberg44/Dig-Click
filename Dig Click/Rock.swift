@@ -23,10 +23,12 @@ class StoneRock: Rock{
     var state: Bool = false
     var type: rockType = .stone
     var dropChance = Int.random(in: 0 ... 100)
+    var mountedType: mountedType = .unmounted
     
-    init(icon: UIImage, location: CGPoint) {
+    init(icon: UIImage, location: CGPoint, mount: mountedType) {
         self.icon = icon
         self.location = location
+        self.mountedType = mount
     }
     
     func breakEvent() -> Drop {

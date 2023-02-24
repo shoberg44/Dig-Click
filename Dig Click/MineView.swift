@@ -24,14 +24,31 @@ class MineView: UIViewController {
     //within specific rock type classes use imageSet[] to get images that corrispond to that type. The location used here is hard coded and should be proc generated in the future
     
     
-    var rock1 = StoneRock(icon: StoneRock.imageSet[0],location: CGPoint(x: 289.0, y: 401.0))
-    
     var repCount = 0
+    
+    var ores: [Rock]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dropIcon.isHidden = true
+        newOreNode(type: .stone, loc: CGPoint(x: 289.0, y: 401.0), mount: .unmounted)
         updateView()
+    }
+    func newOreNode(type: rockType, loc: CGPoint, mount: mountedType){
+        var newOre: Rock
+        //create corrisponding object
+        if type == .stone{
+            newOre = StoneRock(icon: StoneRock.imageSet[0], location: loc, mount: mount)
+        }
+        ores.append(newOre)
+        
+        //create image
+        let image = newOre.icon
+        let imageView = UIImageView(image: image)
+        imageView.frame = CGRect(x: newOre.location.x, y: newOre.location.y, width: 80, height: 80)
+        view.addSubview(imageView)
+        
+        
     }
     
     @IBAction func pickPanGesture(_ sender: UIPanGestureRecognizer) {
@@ -51,7 +68,7 @@ class MineView: UIViewController {
     
     func intersectionEvent(){
         Public.money += 1
-        dropOre(rock1)//runs animation + drop logic
+        dropOre(ores[0])//runs animation + drop logic
         pickIconOutlet.center = PICKDEFAULT //resets posistion
         updateView()//updates view (just score for now)
     }
@@ -95,8 +112,10 @@ class MineView: UIViewController {
         }
         
     }
+        
     
         func updateView(){
+            
             //formats money
             let formatter = NumberFormatter()
             formatter.numberStyle = .currency
