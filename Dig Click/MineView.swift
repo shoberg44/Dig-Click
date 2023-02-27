@@ -17,36 +17,41 @@ class MineView: UIViewController {
     @IBOutlet weak var ore1Icon: UIImageView!
     @IBOutlet weak var pickIconOutlet: UIImageView!
     
-    let PICKDEFAULT: CGPoint = CGPoint(x: 196.0, y: 738.3) //constant
+    let PICKDEFAULT: CGPoint = CGPoint(x: 196.0, y: 738.3) //constant for pick location
     
     ///Rock Decaration
     //when declaring, requires an both a CGPoint for "location" and an image for "icon"
     //within specific rock type classes use imageSet[] to get images that corrispond to that type. The location used here is hard coded and should be proc generated in the future
     
     
-    var repCount = 0
-    
-    var ores: [Rock]
+    var ores = [Rock]() //array of ores on scene
+    var oreImageViews = [UIImageView]() //parralel array of image views
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dropIcon.isHidden = true
         newOreNode(type: .stone, loc: CGPoint(x: 289.0, y: 401.0), mount: .unmounted)
         updateView()
     }
+    
     func newOreNode(type: rockType, loc: CGPoint, mount: mountedType){
         var newOre: Rock
         //create corrisponding object
-        if type == .stone{
-            newOre = StoneRock(icon: StoneRock.imageSet[0], location: loc, mount: mount)
+        switch type {
+        case .stone:
+            newOre = StoneRock(icon: StoneRock.imageSet[1], location: loc, mount: mount)
+        default:
+            newOre = StoneRock(icon: StoneRock.imageSet[1], location: loc, mount: mount)
         }
-        ores.append(newOre)
+        
+        
+        ores.append(newOre) //append object
         
         //create image
         let image = newOre.icon
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: newOre.location.x, y: newOre.location.y, width: 80, height: 80)
         view.addSubview(imageView)
+        oreImageViews.append(imageView) //append corrisponding view to parralel array
         
         
     }
@@ -55,10 +60,14 @@ class MineView: UIViewController {
         if !(sender.state == .ended){ //runs twice so it fixes that problem
             let loc = sender.location(in: view)
             pickIconOutlet.center = loc //puts image at drag gesture
-            if (CGRectIntersectsRect(ore1Icon.frame, pickIconOutlet.frame)) {//detects collision
-                sender.state = .ended //ends drag
-                intersectionEvent()
+            
+            for i in 0..<oreImageViews.count{
+                if (CGRectIntersectsRect(oreImageViews[i].frame, pickIconOutlet.frame)) {//detects collision
+                    sender.state = .ended //ends drag
+                    intersectionEvent()
+                }
             }
+            
         }
         
         
@@ -74,24 +83,34 @@ class MineView: UIViewController {
     }
     
     func dropOre(_ rockNode: Rock){
-        if rockNode.type == .stone{
+        
+        //reconizes type as its child
+        switch rockNode.type {
+        case .stone:
             var tempRock = rockNode as! StoneRock
             tempRock.recalculateDropChance()
+        default:
+            var tempRock = rockNode as! StoneRock
         }
-        var currentDrop = rockNode.breakEvent()//gets drop
+        
+        //gets drop
+        var currentDrop = rockNode.breakEvent()
         print(currentDrop.name)
-        dropIcon.center = rockNode.location // set icon location
-        dropIcon.image = currentDrop.picture //set icon picture
         Public.inventory.append(currentDrop)
         
+        //creates drop image view
+        let image = currentDrop.picture
+        let imageView = UIImageView(image: image)//refrence?
+        imageView.frame = CGRect(x: rockNode.location.x, y: rockNode.location.y, width: 80, height: 80)
+        view.addSubview(imageView)
         
-        dropIcon.isHidden = false //begins drop here
+        //animation
         var time = 0.0
         Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
-            if !self.dropIcon.frame.contains(CGPoint(x: self.dropIcon.center.x, y: 780)){
+            if imageView.frame.contains(CGPoint(x: imageView.center.x, y: 780)){
                 time += 0.05
                 
-                self.dropIcon.center.y += pow(time, 2)*16+100*time-4 //gravity
+                imageView.center.y += pow(time, 2)*16+100*time-4 //gravity
             }
             else{
                 timer.invalidate()
@@ -101,9 +120,9 @@ class MineView: UIViewController {
                     iterations += 1
                     
                     time = time - 0.07
-                    self.dropIcon.center.y -= pow(time, 2)*16+100*time-4
-                    if iterations >= 14{
-                        self.dropIcon.isHidden = true
+                    imageView.center.y -= pow(time, 2)*16+100*time-20
+                    if iterations >= 15{
+                        imageView.isHidden = true
                         timer2.invalidate()
                     }
                 }

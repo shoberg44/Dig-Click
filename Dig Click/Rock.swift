@@ -15,7 +15,7 @@ import Foundation
 import UIKit
 class StoneRock: Rock{
     
-    static var imageSet: [UIImage] = [UIImage(systemName: "nosign")!]
+    static var imageSet: [UIImage] = [UIImage(systemName: "nosign")!,UIImage(systemName: "trash.square.fill")!]
     var icon: UIImage
     var location: CGPoint
     var health: Int = 100
