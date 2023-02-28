@@ -16,7 +16,7 @@ import UIKit
 class StoneRock: Rock{
     
     static var imageSet: [UIImage] = [UIImage(systemName: "nosign")!,UIImage(systemName: "trash.square.fill")!]
-    var icon: UIImage
+    var imageView: UIImageView
     var location: CGPoint
     var health: Int = 100
     var lives: Int = 1
@@ -25,8 +25,21 @@ class StoneRock: Rock{
     var dropChance = Int.random(in: 0 ... 100)
     var mountedType: mountedType = .unmounted
     
-    init(icon: UIImage, location: CGPoint, mount: mountedType) {
-        self.icon = icon
+    init(location: CGPoint, mount: mountedType) {
+        switch mount {
+        case .unmounted:
+            imageView = UIImageView(image: StoneRock.imageSet[0])
+        case .ceiling:
+            imageView = UIImageView(image: StoneRock.imageSet[1])
+        case .floor:
+            imageView = UIImageView(image: StoneRock.imageSet[2])
+        case .left:
+            imageView = UIImageView(image: StoneRock.imageSet[3])
+        case .right:
+            imageView = UIImageView(image: StoneRock.imageSet[4])
+        }
+        imageView.frame = CGRect(x: location.x, y: location.y, width: 80, height: 80)
+        
         self.location = location
         self.mountedType = mount
     }

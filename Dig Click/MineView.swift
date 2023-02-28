@@ -25,35 +25,31 @@ class MineView: UIViewController {
     
     
     var ores = [Rock]() //array of ores on scene
-    var oreImageViews = [UIImageView]() //parralel array of image views
     
     override func viewDidLoad() {
         super.viewDidLoad()
         newOreNode(type: .stone, loc: CGPoint(x: 289.0, y: 401.0), mount: .unmounted)
+        newOreNode(type: .stone, loc: CGPoint(x: 100, y: 401.0), mount: .ceiling)
         updateView()
     }
     
     func newOreNode(type: rockType, loc: CGPoint, mount: mountedType){
         var newOre: Rock
+        
         //create corrisponding object
         switch type {
         case .stone:
-            newOre = StoneRock(icon: StoneRock.imageSet[1], location: loc, mount: mount)
-        default:
-            newOre = StoneRock(icon: StoneRock.imageSet[1], location: loc, mount: mount)
+            newOre = StoneRock(location: loc, mount: mount)
+        case .geode:
+            newOre = StoneRock(location: loc, mount: mount)
+        case .sandstone:
+            newOre = StoneRock(location: loc, mount: mount)
         }
+        //append object to ore array
+        ores.append(newOre)
         
-        
-        ores.append(newOre) //append object
-        
-        //create image
-        let image = newOre.icon
-        let imageView = UIImageView(image: image)
-        imageView.frame = CGRect(x: newOre.location.x, y: newOre.location.y, width: 80, height: 80)
-        view.addSubview(imageView)
-        oreImageViews.append(imageView) //append corrisponding view to parralel array
-        
-        
+        //adds to view
+        view.addSubview(newOre.imageView)
     }
     
     @IBAction func pickPanGesture(_ sender: UIPanGestureRecognizer) {
@@ -61,11 +57,17 @@ class MineView: UIViewController {
             let loc = sender.location(in: view)
             pickIconOutlet.center = loc //puts image at drag gesture
             
-            for i in 0..<oreImageViews.count{
-                if (CGRectIntersectsRect(oreImageViews[i].frame, pickIconOutlet.frame)) {//detects collision
+            for i in 0..<ores.count{ //finds ore
+            
+                if (CGRectIntersectsRect(ores[i].imageView.frame, pickIconOutlet.frame)) {//detects collision
                     sender.state = .ended //ends drag
-                    intersectionEvent()
+                    
+                    Public.money += 1
+                    dropOre(ores[i])//runs animation + drop logic
+                    pickIconOutlet.center = PICKDEFAULT //resets posistion
+                    updateView()//updates view (just score for now)
                 }
+                
             }
             
         }
@@ -75,16 +77,9 @@ class MineView: UIViewController {
         
     }
     
-    func intersectionEvent(){
-        Public.money += 1
-        dropOre(ores[0])//runs animation + drop logic
-        pickIconOutlet.center = PICKDEFAULT //resets posistion
-        updateView()//updates view (just score for now)
-    }
-    
     func dropOre(_ rockNode: Rock){
         
-        //reconizes type as its child
+        //reconizes type as its child TEMP i belive
         switch rockNode.type {
         case .stone:
             var tempRock = rockNode as! StoneRock
@@ -94,7 +89,7 @@ class MineView: UIViewController {
         }
         
         //gets drop
-        var currentDrop = rockNode.breakEvent()
+        let currentDrop = rockNode.breakEvent()
         print(currentDrop.name)
         Public.inventory.append(currentDrop)
         
