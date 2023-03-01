@@ -9,12 +9,11 @@ import UIKit
 class Public{
     static var money: Double = 0
     static var inventory: [Drop] = []
+    static var pickaxe: Pickaxe = Pickaxe(type: .wood)
 }
 class MineView: UIViewController {
     
-    @IBOutlet weak var dropIcon: UIImageView!
     @IBOutlet weak var moneyOutlet: UILabel!
-    @IBOutlet weak var ore1Icon: UIImageView!
     @IBOutlet weak var pickIconOutlet: UIImageView!
     
     let PICKDEFAULT: CGPoint = CGPoint(x: 196.0, y: 738.3) //constant for pick location
@@ -30,6 +29,8 @@ class MineView: UIViewController {
         super.viewDidLoad()
         newOreNode(type: .stone, loc: CGPoint(x: 289.0, y: 401.0), mount: .unmounted)
         newOreNode(type: .stone, loc: CGPoint(x: 100, y: 401.0), mount: .ceiling)
+        pickIconOutlet.image = Public.pickaxe.image
+        Public.pickaxe = Pickaxe(type: .silicon)
         updateView()
     }
     
@@ -63,7 +64,8 @@ class MineView: UIViewController {
                     sender.state = .ended //ends drag
                     
                     Public.money += 1
-                    dropOre(ores[i])//runs animation + drop logic
+                    ores[i].health -= Public.pickaxe.damage
+                    print("Health: \(ores[i].health)")
                     pickIconOutlet.center = PICKDEFAULT //resets posistion
                     updateView()//updates view (just score for now)
                 }
@@ -90,8 +92,8 @@ class MineView: UIViewController {
         
         //gets drop
         let currentDrop = rockNode.breakEvent()
-        print(currentDrop.name)
         Public.inventory.append(currentDrop)
+        print(currentDrop.name)
         
         //creates drop image view
         let image = currentDrop.picture
@@ -135,6 +137,21 @@ class MineView: UIViewController {
             formatter.numberStyle = .currency
             if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
                 moneyOutlet.text = "\(formattedTipAmount)"
+            }
+            //detects ore health
+            for i in 0..<ores.count{
+                if ores[i].health <= 0{
+                    dropOre(ores[i])//runs animation + drop logic
+                    ores[i].imageView.removeFromSuperview()
+                    ores.remove(at: i)
+                }
+                if ores[i].health < 100{
+                    var healthBar = UIProgressView(frame: CGRect(origin: ores[i].location, size: CGSize(width: 100, height: 5)))
+                    healthBar.progressTintColor = UIColor.green
+                    healthBar.trackTintColor = UIColor.gray
+                    healthBar.progress = 0.5
+                    view.addSubview(healthBar)
+                }
             }
         }
         
