@@ -24,6 +24,7 @@ class StoneRock: Rock{
     var type: rockType = .stone
     var dropChance = Int.random(in: 0 ... 100)
     var mountedType: mountedType = .unmounted
+    var healthBar: UIProgressView
     
     init(location: CGPoint, mount: mountedType) {
         switch mount {
@@ -42,6 +43,10 @@ class StoneRock: Rock{
         
         self.location = location
         self.mountedType = mount
+        
+        healthBar = UIProgressView(frame: CGRect(origin: CGPoint(x: location.x, y: location.y + 100), size: CGSize(width: 100, height: 5)))
+        healthBar.progressTintColor = UIColor.green
+        healthBar.trackTintColor = UIColor.gray
     }
     
     func breakEvent() -> Drop {

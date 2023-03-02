@@ -33,14 +33,14 @@ class Pickaxe{
             damage = 50
             image = Pickaxe.imageSet[1]
         case .silver:
-            image = Pickaxe.imageSet[2]
+            image = Pickaxe.imageSet[0]
             damage = 25
         case .diamond:
             damage = 70
-            image = Pickaxe.imageSet[3]
+            image = Pickaxe.imageSet[0]
         case .steel:
             damage = 40
-            image = Pickaxe.imageSet[4]
+            image = Pickaxe.imageSet[0]
         case .silicon:
             image = Pickaxe.imageSet[0]
             damage = 100

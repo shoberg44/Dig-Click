@@ -30,7 +30,7 @@ class MineView: UIViewController {
         newOreNode(type: .stone, loc: CGPoint(x: 289.0, y: 401.0), mount: .unmounted)
         newOreNode(type: .stone, loc: CGPoint(x: 100, y: 401.0), mount: .ceiling)
         pickIconOutlet.image = Public.pickaxe.image
-        Public.pickaxe = Pickaxe(type: .silicon)
+        Public.pickaxe = Pickaxe(type: .steel)
         updateView()
     }
     
@@ -140,17 +140,19 @@ class MineView: UIViewController {
             }
             //detects ore health
             for i in 0..<ores.count{
+                ores[i].healthBar.removeFromSuperview()
                 if ores[i].health <= 0{
                     dropOre(ores[i])//runs animation + drop logic
                     ores[i].imageView.removeFromSuperview()
-                    ores.remove(at: i)
+                    ores[i].healthBar.removeFromSuperview()
+                    print("attempting to remove ore index: \(i)")
+                    print("Current Array \(ores)")
+                    ores.remove(at: i) //shifts array when removes
+                    
                 }
-                if ores[i].health < 100{
-                    var healthBar = UIProgressView(frame: CGRect(origin: ores[i].location, size: CGSize(width: 100, height: 5)))
-                    healthBar.progressTintColor = UIColor.green
-                    healthBar.trackTintColor = UIColor.gray
-                    healthBar.progress = 0.5
-                    view.addSubview(healthBar)
+                else if ores[i].health < 100{
+                    ores[i].healthBar.progress = Float(ores[i].health) / 100
+                    view.addSubview(ores[i].healthBar)//adds health bar to subview
                 }
             }
         }

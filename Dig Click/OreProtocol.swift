@@ -30,6 +30,7 @@ public protocol Rock{
     var location: CGPoint {get set}
     var imageView: UIImageView {get set}
     var dropChance: Int {get set}
+    var healthBar: UIProgressView {get set}
     func breakEvent()->Drop
     func recalculateDropChance()
     
