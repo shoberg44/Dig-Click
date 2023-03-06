@@ -25,6 +25,7 @@ class Pickaxe{
     var type: pickType = .wood
     
     init(type: pickType) {
+        self.type = type
         switch type {
         case .wood:
             damage = 10

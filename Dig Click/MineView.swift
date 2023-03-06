@@ -24,13 +24,20 @@ class MineView: UIViewController {
     
     
     var ores = [Rock]() //array of ores on scene
+    var oreGenLoc = [CGPoint]() //array of potental ore generation spots
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        newOreNode(type: .stone, loc: CGPoint(x: 289.0, y: 401.0), mount: .unmounted)
-        newOreNode(type: .stone, loc: CGPoint(x: 100, y: 401.0), mount: .ceiling)
+        newOreNode(type: .stone, loc: CGPoint(x: 289, y: 401), mount: .unmounted)
+        newOreNode(type: .stone, loc: CGPoint(x: 200, y: 390), mount: .ceiling)
+        newOreNode(type: .stone, loc: CGPoint(x: 40, y: 550), mount: .ceiling)
         pickIconOutlet.image = Public.pickaxe.image
-        Public.pickaxe = Pickaxe(type: .steel)
+        Public.pickaxe = Pickaxe(type: .silver)
+        for UIImage in view.subviews{
+            if UIImage.tag == 33{
+                oreGenLoc.append(UIImage.center)
+            }
+        }
         updateView()
     }
     
@@ -62,15 +69,31 @@ class MineView: UIViewController {
             
                 if (CGRectIntersectsRect(ores[i].imageView.frame, pickIconOutlet.frame)) {//detects collision
                     sender.state = .ended //ends drag
-                    
                     Public.money += 1
                     ores[i].health -= Public.pickaxe.damage
                     print("Health: \(ores[i].health)")
                     pickIconOutlet.center = PICKDEFAULT //resets posistion
-                    updateView()//updates view (just score for now)
+                    print(Public.pickaxe.type)
+                    if Public.pickaxe.type == .silver{
+                        
+                        for other in 0..<ores.count{
+                            let x1 = ores[other].location.x
+                            let x2 = ores[i].location.x
+                            let y1 = ores[other].location.y
+                            let y2 = ores[i].location.y
+                            
+                            let distance = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
+                            
+                            if distance <= 100 && distance != 0{
+                                ores[other].health -= (Public.pickaxe.damage)/3
+                            }
+                            
+                        }
+                    }
                 }
                 
             }
+            updateView()//updates view (just score for now)
             
         }
         
@@ -145,16 +168,23 @@ class MineView: UIViewController {
                     dropOre(ores[i])//runs animation + drop logic
                     ores[i].imageView.removeFromSuperview()
                     ores[i].healthBar.removeFromSuperview()
-                    print("attempting to remove ore index: \(i)")
-                    print("Current Array \(ores)")
-                    ores.remove(at: i) //shifts array when removes
-                    
                 }
                 else if ores[i].health < 100{
                     ores[i].healthBar.progress = Float(ores[i].health) / 100
                     view.addSubview(ores[i].healthBar)//adds health bar to subview
                 }
             }
+            ores.removeAll(where: {$0.health <= 0})
         }
+    //generates the mine ore locations
+    func generateMine(){
+        let oresCount = 5
+        for i in 0..<5{
+            let randLoc = oreGenLoc.remove(at: Int.random(in: 0 ..< oreGenLoc.count))
+            
+            newOreNode(type: .stone, loc: randLoc, mount: .unmounted)
+        }
+        
+    }
         
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import GameplayKit
 public enum dropType: String {
 case pebble = "pebble"
 case diamond = "diamond"
@@ -18,6 +19,7 @@ case unknown = ""
 }
 public class Drop{
     var value: Double
+    var grade: Int = 50 //a value for a ore that ranges from 50 - 100, 0 for non gradable metal/objects
     var picture: UIImage = UIImage(systemName: "nosign")!
     var meltable: Bool
     var weight: Double
@@ -26,8 +28,9 @@ public class Drop{
     var canSell: Bool
     var name: String
 
-    init(value: Double, picture: UIImage, meltable: Bool, weight: Double, type: dropType, isOre: Bool, canSell: Bool, name: String) { //manual
+    init(value: Double, picture: UIImage, meltable: Bool, weight: Double, type: dropType, isOre: Bool, canSell: Bool, name: String, grade: Int) { //manual
         self.value = value
+        self.grade = grade
         self.picture = picture
         self.meltable = meltable
         self.weight = weight
@@ -39,6 +42,7 @@ public class Drop{
     }
     init(isOre: Bool, name: String, canSell: Bool){ //short custom
         self.value = 0
+        self.grade = 0
         self.meltable = false
         self.weight = 0
         self.isOre = isOre
@@ -57,6 +61,7 @@ public class Drop{
             weight = 1.5
             canSell = true
             isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
         case .coal:
             value = 0.1
             meltable = false
@@ -70,30 +75,36 @@ public class Drop{
             weight = 4
             canSell = true
             isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
         case .diamond:
             value = 100
-            meltable = false
+            meltable = true
             weight = 10
             canSell = true
             isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
         case .ruby:
             value = 50
-            meltable = false
+            meltable = true
             weight = 5
             canSell = true
             isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
+            
         case .rarity:
             value = 0
             meltable = false
             weight = 1
             canSell = true
             isOre = true
+            grade = 1
         case .unknown:
             value = -1
             meltable = false
             weight = -1
             canSell = false
             isOre = false
+            grade = 0
         }
     }
     
@@ -109,5 +120,12 @@ public class Drop{
             print("melt failed")
             return (false, Drop(type: .unknown))
         }
+    }
+    func calculateGrade(mean: Float, sd: Float)->Int{
+        let distribution = GKGaussianDistribution(randomSource: GKRandomDistribution(lowestValue: 50, highestValue: 100), mean: mean, deviation: sd)
+        let pick = distribution.nextInt()
+        return pick
+        
+        
     }
 }
