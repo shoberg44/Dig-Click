@@ -25,7 +25,6 @@ class StoneRock: Rock{
     var dropChance = Int.random(in: 0 ... 100)
     var mountedType: mountedType = .unmounted
     var healthBar: UIProgressView
-    
     init(location: CGPoint, mount: mountedType) {
         switch mount {
         case .unmounted:
@@ -39,7 +38,10 @@ class StoneRock: Rock{
         case .right:
             imageView = UIImageView(image: StoneRock.imageSet[4])
         }
-        imageView.frame = CGRect(x: location.x, y: location.y, width: 80, height: 80)
+        
+        imageView.frame = CGRect(x: location.x, y: location.y, width: Public.iconSize, height: Public.iconSize)
+        
+        //CGPoint(x: location.x-(iconSize/2), y: location.y-(iconSize/2))
         
         self.location = location
         self.mountedType = mount

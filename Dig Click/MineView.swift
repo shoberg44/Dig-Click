@@ -10,7 +10,9 @@ class Public{
     static var money: Double = 0
     static var inventory: [Drop] = []
     static var pickaxe: Pickaxe = Pickaxe(type: .wood)
+    static let iconSize = 80
 }
+
 class MineView: UIViewController {
     
     @IBOutlet weak var moneyOutlet: UILabel!
@@ -22,22 +24,21 @@ class MineView: UIViewController {
     //when declaring, requires an both a CGPoint for "location" and an image for "icon"
     //within specific rock type classes use imageSet[] to get images that corrispond to that type. The location used here is hard coded and should be proc generated in the future
     
-    
+   
     var ores = [Rock]() //array of ores on scene
     var oreGenLoc = [CGPoint]() //array of potental ore generation spots
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        newOreNode(type: .stone, loc: CGPoint(x: 289, y: 401), mount: .unmounted)
-        newOreNode(type: .stone, loc: CGPoint(x: 200, y: 390), mount: .ceiling)
-        newOreNode(type: .stone, loc: CGPoint(x: 40, y: 550), mount: .ceiling)
         pickIconOutlet.image = Public.pickaxe.image
         Public.pickaxe = Pickaxe(type: .silver)
+        var test = Public.iconSize/2
         for UIImage in view.subviews{
             if UIImage.tag == 33{
-                oreGenLoc.append(UIImage.center)
+                oreGenLoc.append(CGPoint(x: UIImage.center.x - test, y: UIImage.center.y - test))
             }
         }
+        generateMine()
         updateView()
     }
     
@@ -73,7 +74,6 @@ class MineView: UIViewController {
                     ores[i].health -= Public.pickaxe.damage
                     print("Health: \(ores[i].health)")
                     pickIconOutlet.center = PICKDEFAULT //resets posistion
-                    print(Public.pickaxe.type)
                     if Public.pickaxe.type == .silver{
                         
                         for other in 0..<ores.count{
@@ -178,12 +178,12 @@ class MineView: UIViewController {
         }
     //generates the mine ore locations
     func generateMine(){
-        let oresCount = 5
-        for i in 0..<5{
-            let randLoc = oreGenLoc.remove(at: Int.random(in: 0 ..< oreGenLoc.count))
-            
-            newOreNode(type: .stone, loc: randLoc, mount: .unmounted)
+        let oresCount = 10
+        let randLoc = oreGenLoc.shuffled().prefix(oresCount)
+        for i in 0..<randLoc.count{
+            newOreNode(type: .stone, loc: randLoc[i], mount: .unmounted)
         }
+        
         
     }
         
