@@ -39,9 +39,8 @@ class StoneRock: Rock{
             imageView = UIImageView(image: StoneRock.imageSet[4])
         }
         
-        imageView.frame = CGRect(x: location.x, y: location.y, width: Public.iconSize, height: Public.iconSize)
+        imageView.frame = CGRect(x: location.x, y: location.y, width: Double(Public.iconSize), height: Double(Public.iconSize))
         
-        //CGPoint(x: location.x-(iconSize/2), y: location.y-(iconSize/2))
         
         self.location = location
         self.mountedType = mount

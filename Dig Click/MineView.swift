@@ -31,8 +31,8 @@ class MineView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pickIconOutlet.image = Public.pickaxe.image
-        Public.pickaxe = Pickaxe(type: .silver)
-        var test = Public.iconSize/2
+        Public.pickaxe = Pickaxe(type: .silicon)
+        var test: CGFloat = CGFloat(Public.iconSize/2)
         for UIImage in view.subviews{
             if UIImage.tag == 33{
                 oreGenLoc.append(CGPoint(x: UIImage.center.x - test, y: UIImage.center.y - test))
@@ -70,7 +70,7 @@ class MineView: UIViewController {
             
                 if (CGRectIntersectsRect(ores[i].imageView.frame, pickIconOutlet.frame)) {//detects collision
                     sender.state = .ended //ends drag
-                    Public.money += 1
+                    
                     ores[i].health -= Public.pickaxe.damage
                     print("Health: \(ores[i].health)")
                     pickIconOutlet.center = PICKDEFAULT //resets posistion
@@ -84,8 +84,8 @@ class MineView: UIViewController {
                             
                             let distance = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
                             
-                            if distance <= 100 && distance != 0{
-                                ores[other].health -= (Public.pickaxe.damage)/3
+                            if distance <= Public.pickaxe.spread && distance != 0{
+                                ores[other].health -= Int(((Public.pickaxe.spread - distance)/Public.pickaxe.spreadStrength))*Public.pickaxe.damage
                             }
                             
                         }
@@ -153,29 +153,33 @@ class MineView: UIViewController {
     }
         
     
-        func updateView(){
-            
-            //formats money
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .currency
-            if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
-                moneyOutlet.text = "\(formattedTipAmount)"
-            }
-            //detects ore health
-            for i in 0..<ores.count{
+    func updateView(){
+        
+//detects ore health
+        for i in 0..<ores.count{
+            ores[i].healthBar.removeFromSuperview()
+            if ores[i].health <= 0{
+                Public.money += 1
+                dropOre(ores[i])//runs animation + drop logic
+                ores[i].imageView.removeFromSuperview()
                 ores[i].healthBar.removeFromSuperview()
-                if ores[i].health <= 0{
-                    dropOre(ores[i])//runs animation + drop logic
-                    ores[i].imageView.removeFromSuperview()
-                    ores[i].healthBar.removeFromSuperview()
-                }
-                else if ores[i].health < 100{
-                    ores[i].healthBar.progress = Float(ores[i].health) / 100
-                    view.addSubview(ores[i].healthBar)//adds health bar to subview
-                }
+                
             }
-            ores.removeAll(where: {$0.health <= 0})
+            else if ores[i].health < 100{
+                ores[i].healthBar.progress = Float(ores[i].health) / 100
+                view.addSubview(ores[i].healthBar)//adds health bar to subview
+            }
         }
+        ores.removeAll(where: {$0.health <= 0})
+        //formats money
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
+            moneyOutlet.text = "\(formattedTipAmount)"
+        }
+        
+        
+    }
     //generates the mine ore locations
     func generateMine(){
         let oresCount = 10

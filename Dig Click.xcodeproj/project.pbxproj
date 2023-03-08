@@ -11,6 +11,7 @@
 		5826BA9829973DB4009F2500 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5826BA9729973DB4009F2500 /* Drop.swift */; };
 		E60A934E299BC43F009F633E /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60A934D299BC43F009F633E /* InventoryCell.swift */; };
 		E60FA261299531F8007EAF04 /* MineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60FA260299531F8007EAF04 /* MineView.swift */; };
+		E63194C929B8CC68009EAC33 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63194C829B8CC68009EAC33 /* StoreViewController.swift */; };
 		E65772AE29AF8B5500842B75 /* Pickaxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65772AD29AF8B5500842B75 /* Pickaxe.swift */; };
 		E69BC4B7299A8477008D6954 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69BC4B6299A8477008D6954 /* InventoryViewController.swift */; };
 		E6A9CD95299D18920078A75F /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A9CD94299D18920078A75F /* Rock.swift */; };
@@ -48,6 +49,7 @@
 		5826BA9729973DB4009F2500 /* Drop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
 		E60A934D299BC43F009F633E /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
 		E60FA260299531F8007EAF04 /* MineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineView.swift; sourceTree = "<group>"; };
+		E63194C829B8CC68009EAC33 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		E65772AD29AF8B5500842B75 /* Pickaxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pickaxe.swift; sourceTree = "<group>"; };
 		E69BC4B6299A8477008D6954 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		E6A9CD94299D18920078A75F /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				E6E357222992909D00AEC80D /* AppDelegate.swift */,
 				E6E357242992909D00AEC80D /* SceneDelegate.swift */,
 				E6E357282992909D00AEC80D /* Main.storyboard */,
+				E63194C829B8CC68009EAC33 /* StoreViewController.swift */,
 				E6E357262992909D00AEC80D /* ViewController.swift */,
 				E60A934D299BC43F009F633E /* InventoryCell.swift */,
 				E69BC4B6299A8477008D6954 /* InventoryViewController.swift */,
@@ -290,6 +293,7 @@
 				E60FA261299531F8007EAF04 /* MineView.swift in Sources */,
 				5826BA96299731BE009F2500 /* OreProtocol.swift in Sources */,
 				E6E357252992909D00AEC80D /* SceneDelegate.swift in Sources */,
+				E63194C929B8CC68009EAC33 /* StoreViewController.swift in Sources */,
 				E69BC4B7299A8477008D6954 /* InventoryViewController.swift in Sources */,
 				5826BA9829973DB4009F2500 /* Drop.swift in Sources */,
 				E6E3572D2992909D00AEC80D /* Dig_Click.xcdatamodeld in Sources */,
