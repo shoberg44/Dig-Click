@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import GameplayKit
+
 class Public{
     static var money: Double = 0
     static var inventory: [Drop] = []
@@ -24,23 +26,35 @@ class MineView: UIViewController {
     //when declaring, requires an both a CGPoint for "location" and an image for "icon"
     //within specific rock type classes use imageSet[] to get images that corrispond to that type. The location used here is hard coded and should be proc generated in the future
     
-   
+ 
+    var seed = UInt64(9)
     var ores = [Rock]() //array of ores on scene
     var oreGenLoc = [CGPoint]() //array of potental ore generation spots
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         pickIconOutlet.image = Public.pickaxe.image
         Public.pickaxe = Pickaxe(type: .silicon)
-        var test: CGFloat = CGFloat(Public.iconSize/2)
+        
+        var offset: CGFloat = CGFloat(Public.iconSize/2)
         for UIImage in view.subviews{
             if UIImage.tag == 33{
-                oreGenLoc.append(CGPoint(x: UIImage.center.x - test, y: UIImage.center.y - test))
+                oreGenLoc.append(CGPoint(x: UIImage.center.x - offset, y: UIImage.center.y - offset))
             }
         }
+        let myArray = [1, 2, 3, 4, 5]
+        var mersenneTwister = GKMersenneTwisterRandomSource(seed: seed)
+        let fixedArrayByDate = mersenneTwister.arrayByShufflingObjects(in: myArray)
+        print(fixedArrayByDate)
         generateMine()
         updateView()
     }
+    
+    
+    
+
+    
     
     func newOreNode(type: rockType, loc: CGPoint, mount: mountedType){
         var newOre: Rock
@@ -190,5 +204,6 @@ class MineView: UIViewController {
         
         
     }
+    
         
 }
