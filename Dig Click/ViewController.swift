@@ -17,6 +17,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Public.pickaxe = Pickaxe(type: .silicon)
+        Public.purchasedPickaxes.append(Public.pickaxe)
     }
     
 

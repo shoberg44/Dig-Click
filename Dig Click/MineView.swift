@@ -30,7 +30,6 @@ class MineView: UIViewController {
         super.viewDidLoad()
         
         pickIconOutlet.image = Public.pickaxe.image
-        Public.pickaxe = Pickaxe(type: .silicon)
         
         var offset: CGFloat = CGFloat(Public.iconSize/2)
         for UIImage in view.subviews{

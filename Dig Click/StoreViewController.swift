@@ -18,10 +18,13 @@ class StoreViewController: UIViewController {
     @IBOutlet weak var diamondPickView: UIView!
     @IBOutlet weak var ironPickView: UIView!
     @IBOutlet weak var woodPickView: UIView!
+    var selectedType: pickType = .wood
     var pickPurchasedState = false
     var pickInfoViews: [UIView] = []
+    var pickPrices: [String: Double] = ["wood" : 0.00,"silver":10.00,"iron":50.00,"steel":120,"diamond":500,"silicon":1000]
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectedType = .wood
         pickInfoViews.append(woodPickView)
         pickInfoViews.append(silverPickView)
         pickInfoViews.append(ironPickView)
@@ -41,38 +44,63 @@ class StoreViewController: UIViewController {
         switch segmentedPickPicker.selectedSegmentIndex {
         case 0:
             woodPickView.isHidden = false
+            selectedType = .wood
             isAlreadyOwned(targetType: .wood)
         case 1:
             silverPickView.isHidden = false
+            selectedType = .silver
             isAlreadyOwned(targetType: .silver)
         case 2:
             ironPickView.isHidden = false
+            selectedType = .iron
             isAlreadyOwned(targetType: .iron)
         case 3:
             steelPickView.isHidden = false
+            selectedType = .steel
             isAlreadyOwned(targetType: .steel)
         case 4:
             diamondPickView.isHidden = false
+            selectedType = .diamond
             isAlreadyOwned(targetType: .diamond)
         case 5:
             siliconPickView.isHidden = false
-            
+            selectedType = .silicon
             isAlreadyOwned(targetType: .silicon)
             
         default:
             print("error in pick indexing")
         }
     }
+    
+    @IBAction func buyButton(_ sender: UIButton) {
+        if pickPurchasedState == false && (Public.money >= pickPrices[selectedType.rawValue]!){
+            let newPick = Pickaxe(type: selectedType)
+            Public.purchasedPickaxes.append(newPick)
+            Public.pickaxe = newPick
+            Public.money -= pickPrices[selectedType.rawValue]!
+        }
+        else if pickPurchasedState == false{
+            costLabel.text = "To Expensive!"
+        }
+    }
     func isAlreadyOwned(targetType: pickType){
         for i in Public.purchasedPickaxes{
             if i.type == targetType{
                 costLabel.text = "Owned"
-                costLabel.backgroundColor = UIColor.green
+                costLabel.textColor = UIColor.green
                 purchaseButton.setTitle("Equip", for: .normal)
                 pickPurchasedState = true
                 break
             }
+            else{
+                print(selectedType)
+                costLabel.text = "Cost: $\(pickPrices[selectedType.rawValue]!)"
+                costLabel.textColor = UIColor.clear
+                purchaseButton.setTitle("Purchase", for: .normal)
+                pickPurchasedState = false
+            }
         }
+        
     }
 
     
