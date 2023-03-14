@@ -82,22 +82,20 @@ class MineView: UIViewController {
                     ores[i].health -= Public.pickaxe.damage
                     print("Health: \(ores[i].health)")
                     pickIconOutlet.center = PICKDEFAULT //resets posistion
-                    if Public.pickaxe.type == .silver{
+                    for other in 0..<ores.count{
+                        let x1 = ores[other].location.x
+                        let x2 = ores[i].location.x
+                        let y1 = ores[other].location.y
+                        let y2 = ores[i].location.y
                         
-                        for other in 0..<ores.count{
-                            let x1 = ores[other].location.x
-                            let x2 = ores[i].location.x
-                            let y1 = ores[other].location.y
-                            let y2 = ores[i].location.y
-                            
-                            let distance = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
-                            
-                            if distance <= Public.pickaxe.spread && distance != 0{
-                                ores[other].health -= Int(((Public.pickaxe.spread - distance)/Public.pickaxe.spreadStrength))*Public.pickaxe.damage
-                            }
-                            
+                        let distance = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
+                        
+                        if distance <= Public.pickaxe.spread && distance != 0{
+                            ores[other].health -= Int(((Public.pickaxe.spread - distance)/Public.pickaxe.spreadStrength))*Public.pickaxe.damage
                         }
+                        
                     }
+                    
                 }
                 
             }
@@ -185,7 +183,9 @@ class MineView: UIViewController {
         if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
             moneyOutlet.text = "\(formattedTipAmount)"
         }
-        
+        if ores.count == 0{
+            generateMine()
+        }
         
     }
     //generates the mine ore locations

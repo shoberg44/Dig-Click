@@ -32,6 +32,7 @@ class StoreViewController: UIViewController {
         pickInfoViews.append(diamondPickView)
         pickInfoViews.append(siliconPickView)
         woodPickView.isHidden = false
+        isAlreadyOwned(targetType: .wood)
     }
     
     @IBAction func segmentedPickChange(_ sender: UISegmentedControl) {
@@ -74,34 +75,44 @@ class StoreViewController: UIViewController {
     
     @IBAction func buyButton(_ sender: UIButton) {
         if pickPurchasedState == false && (Public.money >= pickPrices[selectedType.rawValue]!){
+            Public.money -= pickPrices[selectedType.rawValue]!
             let newPick = Pickaxe(type: selectedType)
             Public.purchasedPickaxes.append(newPick)
             Public.pickaxe = newPick
-            Public.money -= pickPrices[selectedType.rawValue]!
         }
         else if pickPurchasedState == false{
             costLabel.text = "To Expensive!"
+            print("to expensive")
         }
+        else{
+            for i in Public.purchasedPickaxes{
+                if i.type == selectedType{
+                    Public.pickaxe = i
+                    break
+                }
+            }
+        }
+        isAlreadyOwned(targetType: selectedType)
     }
     func isAlreadyOwned(targetType: pickType){
+        costLabel.text = "Cost: $\(pickPrices[selectedType.rawValue]!)"
+        costLabel.textColor = UIColor.black
+        purchaseButton.setTitle("Purchase", for: .normal)
+        pickPurchasedState = false
         for i in Public.purchasedPickaxes{
             if i.type == targetType{
                 costLabel.text = "Owned"
                 costLabel.textColor = UIColor.green
                 purchaseButton.setTitle("Equip", for: .normal)
                 pickPurchasedState = true
+                if i.type == Public.pickaxe.type{
+                    purchaseButton.setTitle("Equiped", for: .normal)
+                }
                 break
             }
-            else{
-                print(selectedType)
-                costLabel.text = "Cost: $\(pickPrices[selectedType.rawValue]!)"
-                costLabel.textColor = UIColor.clear
-                purchaseButton.setTitle("Purchase", for: .normal)
-                pickPurchasedState = false
-            }
         }
-        
     }
+
 
     
     
