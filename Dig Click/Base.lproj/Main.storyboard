@@ -387,18 +387,19 @@
                                 <rect key="frame" x="16" y="220" width="358" height="624"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8vn-Hw-QHv">
-                                    <size key="itemSize" width="105" height="119"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8vn-Hw-QHv">
+                                    <size key="itemSize" width="100" height="129"/>
+                                    <size key="estimatedItemSize" width="100" height="129"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sellCell" id="Qzd-uV-EGd" customClass="MarketCell" customModule="Dig_Click" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="105" height="119"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="111" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KqU-b1-heQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="105" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="111" height="129"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKz-ex-XZ2">
@@ -421,7 +422,7 @@
                                                 </imageView>
                                             </subviews>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="105" height="119"/>
+                                        <size key="customSize" width="111" height="129"/>
                                         <connections>
                                             <outlet property="marketIcon" destination="4zU-Jz-yVr" id="X2F-1y-mK3"/>
                                             <outlet property="marketTitle" destination="LYH-65-1Lp" id="tbD-DZ-88n"/>
@@ -434,18 +435,22 @@
                                 <rect key="frame" x="14" y="155" width="192" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </slider>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZYA-dd-0O1">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZYA-dd-0O1">
                                 <rect key="frame" x="16" y="125" width="188" height="32"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="HbO-8G-1FX">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="HbO-8G-1FX">
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="FO1-gU-VWo">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="FO1-gU-VWo">
                                         <rect key="frame" x="94" y="0.0" width="94" height="32"/>
                                     </stepper>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="aDo-EP-N6i"/>
+                                    <constraint firstAttribute="height" constant="32" id="meg-gE-qcf"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxk-46-0YV">
                                 <rect key="frame" x="232" y="125" width="142" height="59"/>
@@ -460,6 +465,10 @@
                         <viewLayoutGuide key="safeArea" id="2vp-Sd-cpX"/>
                         <keyboardLayoutGuide key="keyboard" id="GGb-to-taE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZYA-dd-0O1" firstAttribute="top" secondItem="2vp-Sd-cpX" secondAttribute="top" constant="34" id="1gt-l2-9Yv"/>
+                            <constraint firstItem="ZYA-dd-0O1" firstAttribute="leading" secondItem="2vp-Sd-cpX" secondAttribute="leading" constant="16" id="klJ-Mc-wOf"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Market" id="zJv-XC-Ra1"/>
                     <connections>

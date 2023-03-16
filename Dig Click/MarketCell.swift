@@ -12,9 +12,18 @@ class MarketCell : UICollectionViewCell{
     @IBOutlet weak var marketTitle: UILabel!
     @IBOutlet weak var marketValue: UILabel!
     func configure(name: String, value: Double, icon: UIImage){
-        print("test")
         marketTitle.text = name
         marketIcon.image = icon
-        marketValue.text = "$\(value)"
+        marketValue.text = moneyFormat(value: value)
+    }
+    func moneyFormat(value: Double)->String{
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        if let formattedTipAmount = formatter.string(from: value as NSNumber) {
+            return "\(formattedTipAmount)"
+        }
+        else{
+            return "error"
+        }
     }
 }
