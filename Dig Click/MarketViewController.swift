@@ -24,13 +24,24 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBAction func sellButton(_ sender: UIButton) {
+        var newArray: [Int] = []
         var selectedItems = collectionViewOutlet.indexPathsForSelectedItems
+        
         if selectedItems != nil {
             for i in selectedItems!{
-                Public.money += Public.inventory[i[1]].value
-                print(Public.money)
-                Public.inventory.remove(at: i[1])
+                newArray.append(i[1])
             }
+            newArray = newArray.sorted()
+            
+            newArray = newArray.reversed()
+            for i in newArray{
+                
+                Public.money += Public.inventory[i].value
+                Public.inventory.remove(at: i)
+
+            }
+            collectionViewOutlet.deleteItems(at: collectionViewOutlet.indexPathsForSelectedItems!)
+            
             collectionViewOutlet.reloadData()
         }
         else {
