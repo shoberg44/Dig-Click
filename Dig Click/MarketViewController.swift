@@ -8,19 +8,24 @@
 import UIKit
 class MarketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
+    @IBOutlet weak var costLabel: UILabel!
     @IBOutlet weak var sliderOutlet: UISlider!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var stepperOutlet: UIStepper!
     @IBOutlet weak var collectionViewOutlet: UICollectionView!
     
+    let formatter = NumberFormatter()
     var selectedIndex: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.numberStyle = .currency
         collectionViewOutlet.delegate = self
         collectionViewOutlet.dataSource = self
         collectionViewOutlet.allowsMultipleSelection = true
+        if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
+            costLabel.text = "\(formattedTipAmount)"
+        }
     }
     
     @IBAction func sellButton(_ sender: UIButton) {
@@ -41,12 +46,15 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
 
             }
             collectionViewOutlet.deleteItems(at: collectionViewOutlet.indexPathsForSelectedItems!)
-            
+            if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
+                costLabel.text = "\(formattedTipAmount)"
+            }
             collectionViewOutlet.reloadData()
         }
         else {
           print("empty")
         }
+        
         
     }
     
@@ -62,11 +70,11 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var cell = collectionView.cellForItem(at: indexPath) as! MarketCell
+        let cell = collectionView.cellForItem(at: indexPath) as! MarketCell
         cell.backgroundColor = UIColor.tintColor
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        var cell = collectionView.cellForItem(at: indexPath) as! MarketCell
+        let cell = collectionView.cellForItem(at: indexPath) as! MarketCell
         cell.backgroundColor = UIColor.clear
     }
     

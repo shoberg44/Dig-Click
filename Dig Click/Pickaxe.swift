@@ -17,9 +17,9 @@ public enum pickType: String{
 }
 class Pickaxe{
     
-    static var imageSet: [UIImage] = [UIImage(named: "SteelPick")!,UIImage(named: "SilverPick.png")!,UIImage(named: "DiamondPick.png")!,UIImage(named: "IronPick.png")!]
+    static var imageSet: [UIImage] = [UIImage(named: "SteelPick")!,UIImage(named: "SilverPick.png")!,UIImage(named: "DiamondPick.png")!,UIImage(named: "IronPick.png")!,UIImage(named: "WoodPick.png")!,UIImage(named: "SiliconPick.png")!]
     var image: UIImage
-    var damage: Int = 50
+    var damage: Double = 50
     var spread: Double = 0 //cutoff distance
     var spreadStrength: Double = 4 //lower strength means higher damage
     var resistance: Int = 1 //hits before reset
@@ -30,27 +30,34 @@ class Pickaxe{
         switch type {
         case .wood:
             damage = 10
-            image = Pickaxe.imageSet[0]
-            spread = 0
-        case .iron:
-            damage = 50
-            image = Pickaxe.imageSet[3]
+            image = Pickaxe.imageSet[4]
             spread = 50
+            spreadStrength = 10
+        case .iron:
+            damage = 33
+            image = Pickaxe.imageSet[3]
+            spread = 95
+            spreadStrength = 78
         case .silver:
             image = Pickaxe.imageSet[1]
-            damage = 25
+            damage = 18
+            spread = 105
+            spreadStrength = 60
         case .diamond:
             damage = 70
             image = Pickaxe.imageSet[2]
-            spread = 100
+            spread = 125
+            spreadStrength = 69
         case .steel:
-            damage = 40
+            damage = 45 //base direct hit
             image = Pickaxe.imageSet[0]
-            spread = 35
+            spread = 160 //allowed distance
+            spreadStrength = 115 //critical bound point of distance(130-70)
         case .silicon:
-            image = Pickaxe.imageSet[0]
+            image = Pickaxe.imageSet[5]
             damage = 100
-            spread = 250
+            spread = 300
+            spreadStrength = 100
             
         
         }

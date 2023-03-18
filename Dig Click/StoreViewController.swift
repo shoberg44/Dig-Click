@@ -9,6 +9,7 @@ import UIKit
 
 class StoreViewController: UIViewController {
 
+    @IBOutlet weak var moneyOutlet: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     @IBOutlet weak var purchaseButton: UIButton!
     @IBOutlet weak var segmentedPickPicker: UISegmentedControl!
@@ -22,8 +23,11 @@ class StoreViewController: UIViewController {
     var pickPurchasedState = false
     var pickInfoViews: [UIView] = []
     var pickPrices: [String: Double] = ["wood" : 0.00,"silver":10.00,"iron":50.00,"steel":120,"diamond":500,"silicon":1000]
+    let formatter = NumberFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.numberStyle = .currency
         selectedType = .wood
         pickInfoViews.append(woodPickView)
         pickInfoViews.append(silverPickView)
@@ -33,6 +37,9 @@ class StoreViewController: UIViewController {
         pickInfoViews.append(siliconPickView)
         woodPickView.isHidden = false
         isAlreadyOwned(targetType: .wood)
+        if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
+            moneyOutlet.text = "\(formattedTipAmount)"
+        }
     }
     
     @IBAction func segmentedPickChange(_ sender: UISegmentedControl) {
@@ -79,6 +86,9 @@ class StoreViewController: UIViewController {
             let newPick = Pickaxe(type: selectedType)
             Public.purchasedPickaxes.append(newPick)
             Public.pickaxe = newPick
+            if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
+                moneyOutlet.text = "\(formattedTipAmount)"
+            }
         }
         else if pickPurchasedState == false{
             costLabel.text = "To Expensive!"
@@ -95,7 +105,9 @@ class StoreViewController: UIViewController {
         isAlreadyOwned(targetType: selectedType)
     }
     func isAlreadyOwned(targetType: pickType){
-        costLabel.text = "Cost: $\(pickPrices[selectedType.rawValue]!)"
+        if let formattedTipAmount = formatter.string(from: pickPrices[selectedType.rawValue]! as NSNumber) {
+            costLabel.text = "\(formattedTipAmount)"
+        }
         costLabel.textColor = UIColor.black
         purchaseButton.setTitle("Purchase", for: .normal)
         pickPurchasedState = false

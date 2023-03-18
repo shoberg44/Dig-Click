@@ -15,10 +15,10 @@ import Foundation
 import UIKit
 class StoneRock: Rock{
     
-    static var imageSet: [UIImage] = [UIImage(systemName: "nosign")!,UIImage(systemName: "trash.square.fill")!]
+    static var imageSet: [UIImage] = [UIImage(named: "RockVar1.png")!,UIImage(named: "RockVar2.png")!,UIImage(named: "RockVar3.png")!]
     var imageView: UIImageView
     var location: CGPoint
-    var health: Int = 100
+    var health: Double = 100
     var lives: Int = 1
     var state: Bool = false
     var type: rockType = .stone
@@ -52,19 +52,19 @@ class StoneRock: Rock{
     
     func breakEvent() -> Drop {
         var newDrop: Drop
-        if dropChance <= 5{ // 5
+        if dropChance <= 4{ // 5
             newDrop = Drop(type: .rarity)
         }
-        else if (dropChance <= 10){ //5
+        else if (dropChance <= 9){ //5
             newDrop = Drop(type: .diamond)
         }
-        else if dropChance <= 17{ //7
+        else if dropChance <= 15{ //7
             newDrop = Drop(type: .ruby)
         }
-        else if dropChance <= 32{ //15
+        else if dropChance <= 25{ //15
             newDrop = Drop(type: .copper)
         }
-        else if dropChance <= 50{ //18
+        else if dropChance <= 45{ //18
             newDrop = Drop(type: .coal)
         }
         else{ //50

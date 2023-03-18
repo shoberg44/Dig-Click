@@ -37,11 +37,11 @@
                                 <color key="shadowColor" systemColor="systemBrownColor"/>
                                 <size key="shadowOffset" width="2" height="3"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-Bc-ihA">
-                                <rect key="frame" x="0.66666666666665719" y="405" width="390.66666666666674" height="34"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-Bc-ihA">
+                                <rect key="frame" x="-7" y="405" width="406" height="34"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTw-2z-nvu">
-                                        <rect key="frame" x="0.0" y="0.0" width="94.666666666666671" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="95" height="34"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Inventory"/>
                                         <connections>
@@ -49,7 +49,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MM4-Ax-mw3">
-                                        <rect key="frame" x="98.666666666666657" y="0.0" width="94.666666666666657" height="34"/>
+                                        <rect key="frame" x="104" y="0.0" width="94.666666666666686" height="34"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Store"/>
                                         <connections>
@@ -57,7 +57,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuY-8D-PzX">
-                                        <rect key="frame" x="197.33333333333334" y="0.0" width="94.666666666666657" height="34"/>
+                                        <rect key="frame" x="207.66666666666666" y="0.0" width="94.666666666666657" height="34"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Market"/>
                                         <connections>
@@ -65,7 +65,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1b-BZ-1ga">
-                                        <rect key="frame" x="296" y="0.0" width="94.666666666666686" height="34"/>
+                                        <rect key="frame" x="311.33333333333331" y="0.0" width="94.666666666666686" height="34"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Share"/>
                                         <connections>
@@ -171,10 +171,20 @@
                                 <rect key="frame" x="16" y="91" width="374" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
-                                <color key="textColor" red="0.5350185019" green="0.6816204897" blue="0.27299348270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.78492138950000001" green="1" blue="0.40050656750000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </label>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="33" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLO-ZX-3Us">
+                                <rect key="frame" x="16" y="84" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                            </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="33" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9x-GK-p8q">
+                                <rect key="frame" x="79" y="83" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vvD-Mg-4aL">
                                 <rect key="frame" x="-13" y="800" width="416" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -200,11 +210,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                             </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="33" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLO-ZX-3Us">
-                                <rect key="frame" x="16" y="84" width="35" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
-                            </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="33" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wqh-L6-XLB">
                                 <rect key="frame" x="79" y="354" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -217,11 +222,6 @@
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="33" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtq-kk-15R">
                                 <rect key="frame" x="79" y="154" width="35" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
-                            </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="33" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9x-GK-p8q">
-                                <rect key="frame" x="79" y="83" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                             </imageView>
@@ -341,21 +341,30 @@
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="figure.taichi" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wYr-Ml-kbK">
-                                <rect key="frame" x="157" y="673.33333333333337" width="93" height="97"/>
+                                <rect key="frame" x="152" y="677.33333333333326" width="93" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="q8M-9a-IgX" appends="YES" id="lE0-0h-7DN"/>
                                 </connections>
                             </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inventory Full!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXd-qM-WwG">
+                                <rect key="frame" x="144" y="607" width="107" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Lvg-6Y-D7x"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="lPM-Fq-Ph9"/>
                     <connections>
+                        <outlet property="inventoryLabel" destination="dXd-qM-WwG" id="5Rn-LE-qgl"/>
                         <outlet property="moneyOutlet" destination="ylR-pY-YE9" id="QMw-bC-ilI"/>
                         <outlet property="pickIconOutlet" destination="wYr-Ml-kbK" id="gCJ-rI-Iu8"/>
+                        <segue destination="o5k-NW-vfg" kind="show" identifier="MineToMarketSeque" id="7xc-Up-Wbm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TxO-QY-aO4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -461,6 +470,13 @@
                                     <action selector="sellButton:" destination="o5k-NW-vfg" eventType="touchUpInside" id="GCt-tx-6Hn"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5E3-Zh-uYd">
+                                <rect key="frame" x="32" y="143" width="185" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2vp-Sd-cpX"/>
                         <keyboardLayoutGuide key="keyboard" id="GGb-to-taE"/>
@@ -473,6 +489,7 @@
                     <navigationItem key="navigationItem" title="Market" id="zJv-XC-Ra1"/>
                     <connections>
                         <outlet property="collectionViewOutlet" destination="Qs9-oy-3Us" id="ahu-6p-L1q"/>
+                        <outlet property="costLabel" destination="5E3-Zh-uYd" id="SaO-Ss-EaO"/>
                         <outlet property="sliderOutlet" destination="JPW-AA-3un" id="yBV-ur-mn6"/>
                         <outlet property="stepperOutlet" destination="FO1-gU-VWo" id="aon-Db-6yC"/>
                         <outlet property="textField" destination="HbO-8G-1FX" id="EMs-CV-Mrw"/>
@@ -568,7 +585,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eN0-4f-JX3">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SiliconPick" translatesAutoresizingMaskIntoConstraints="NO" id="eN0-4f-JX3">
                                         <rect key="frame" x="8" y="37" width="94" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -587,7 +604,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BNV-5J-sln">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WoodPick" translatesAutoresizingMaskIntoConstraints="NO" id="BNV-5J-sln">
                                         <rect key="frame" x="8" y="28" width="94" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -613,7 +630,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZD6-aA-gAg">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SilverPick" translatesAutoresizingMaskIntoConstraints="NO" id="ZD6-aA-gAg">
                                         <rect key="frame" x="8" y="34" width="94" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -631,7 +648,7 @@
                                 <rect key="frame" x="24" y="175" width="236" height="203"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4K-a1-WoE">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IronPick" translatesAutoresizingMaskIntoConstraints="NO" id="s4K-a1-WoE">
                                         <rect key="frame" x="8" y="34" width="94" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -657,7 +674,7 @@
                                 <rect key="frame" x="24" y="175" width="236" height="203"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSF-hz-Ru2">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SteelPick" translatesAutoresizingMaskIntoConstraints="NO" id="lSF-hz-Ru2">
                                         <rect key="frame" x="8" y="34" width="94" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -683,7 +700,7 @@
                                 <rect key="frame" x="24" y="175" width="236" height="203"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1r7-H6-pWz">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DiamondPick" translatesAutoresizingMaskIntoConstraints="NO" id="1r7-H6-pWz">
                                         <rect key="frame" x="8" y="34" width="94" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -720,6 +737,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAw-YB-rrq">
+                                <rect key="frame" x="16" y="95" width="107" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemPinkColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mjJ-aP-Dk0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -729,6 +753,7 @@
                         <outlet property="costLabel" destination="fig-Z3-PXW" id="11Z-4W-IZE"/>
                         <outlet property="diamondPickView" destination="P4S-m6-HEe" id="9h4-5a-z4r"/>
                         <outlet property="ironPickView" destination="l0X-kY-E6p" id="lkb-bo-lrf"/>
+                        <outlet property="moneyOutlet" destination="YAw-YB-rrq" id="Ld3-z4-Fi2"/>
                         <outlet property="purchaseButton" destination="F0m-de-FSL" id="oTF-Yt-dVv"/>
                         <outlet property="segmentedPickPicker" destination="fmt-YE-ZpS" id="Nbw-Uq-F0D"/>
                         <outlet property="siliconPickView" destination="RzM-qa-J4Y" id="Add-aN-6dP"/>
@@ -760,7 +785,16 @@
             <point key="canvasLocation" x="0.76335877862595414" y="3.5211267605633805"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="7xc-Up-Wbm"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="DiamondPick" width="189" height="209"/>
+        <image name="IronPick" width="189" height="209"/>
+        <image name="SiliconPick" width="189" height="209"/>
+        <image name="SilverPick" width="189" height="209"/>
+        <image name="SteelPick" width="189" height="209"/>
+        <image name="WoodPick" width="189" height="209"/>
         <image name="figure.taichi" catalog="system" width="106" height="128"/>
         <image name="person.badge.plus" catalog="system" width="128" height="125"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
@@ -775,6 +809,9 @@
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

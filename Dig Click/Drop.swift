@@ -56,19 +56,20 @@ public class Drop{
         
         switch type {
         case .pebble:
-            value = 0.01
+            value = 0.10
             meltable = true
             weight = 1.5
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = UIImage(named: "pebbles")!
         case .coal:
-            value = 0.1
+            value = 0.33
             meltable = false
             weight = 1
             canSell = true
             isOre = true
-            picture = UIImage(systemName: "folder.fill")!
+            picture = UIImage(named: "coal")!
         case .copper:
             value = 1
             meltable = true
@@ -76,21 +77,23 @@ public class Drop{
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = UIImage(named: "copper2")!
         case .diamond:
-            value = 100
+            value = 25
             meltable = true
             weight = 10
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = UIImage(named: "diamond")!
         case .ruby:
-            value = 50
+            value = 10
             meltable = true
             weight = 5
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
-            
+            picture = UIImage(named: "ruby")!
         case .rarity:
             value = 0
             meltable = false
@@ -98,6 +101,7 @@ public class Drop{
             canSell = true
             isOre = true
             grade = 1
+            picture = UIImage(named: "rarity")!
         case .unknown:
             value = -1
             meltable = false

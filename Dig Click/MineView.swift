@@ -12,37 +12,50 @@ import GameplayKit
 
 class MineView: UIViewController {
     
-    @IBOutlet weak var moneyOutlet: UILabel!
+    @IBOutlet weak var inventoryLabel: UILabel!
+    @IBOutlet weak var moneyOutlet: UILabel! //Web Safe Color 669900 to SystemRed
     @IBOutlet weak var pickIconOutlet: UIImageView!
     
     let PICKDEFAULT: CGPoint = CGPoint(x: 196.0, y: 738.3) //constant for pick location
+    let MAXINVENTORYSPACE: Int = 15 //max space in inventory
+    
+    var alertController: UIAlertController?
+    var okAction: UIAlertAction?
     
     ///Rock Decaration
     //when declaring, requires an both a CGPoint for "location" and an image for "icon"
     //within specific rock type classes use imageSet[] to get images that corrispond to that type. The location used here is hard coded and should be proc generated in the future
     
- 
-    var seed = UInt64(9)
+    //var seed = UInt64(9)
+    //        let myArray = [1, 2, 3, 4, 5]
+    //        var mersenneTwister = GKMersenneTwisterRandomSource(seed: seed)
+    //        let seededOutput = mersenneTwister.arrayByShufflingObjects(in: myArray)
+    //        print(seededOutput)
     var ores = [Rock]() //array of ores on scene
     var oreGenLoc = [CGPoint]() //array of potental ore generation spots
-    
+    var offset: CGFloat = CGFloat(Public.iconSize/2)
     override func viewDidLoad() {
         super.viewDidLoad()
+        alertController = UIAlertController(title: "Not Enough Space", message: "Your inventory has a maximum capacity of \(MAXINVENTORYSPACE). You have reached that limit. Sell items to get more space!", preferredStyle: .alert)
+        okAction = UIAlertAction(title: "Back", style: .default){ [self]_ in
+            alertController?.dismiss(animated: false)
+            self.performSegue(withIdentifier: "MineToMarketSeque", sender: self)
+            alertController?.dismiss(animated: false)
+        
+        }
+        alertController!.addAction(okAction!)
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backround")!)
         
         pickIconOutlet.image = Public.pickaxe.image
         
-        var offset: CGFloat = CGFloat(Public.iconSize/2)
         for UIImage in view.subviews{
             if UIImage.tag == 33{
                 oreGenLoc.append(CGPoint(x: UIImage.center.x - offset, y: UIImage.center.y - offset))
             }
         }
-        let myArray = [1, 2, 3, 4, 5]
-        var mersenneTwister = GKMersenneTwisterRandomSource(seed: seed)
-        let fixedArrayByDate = mersenneTwister.arrayByShufflingObjects(in: myArray)
-        print(fixedArrayByDate)
         generateMine()
         updateView()
+        
     }
     
     
@@ -70,7 +83,14 @@ class MineView: UIViewController {
     }
     
     @IBAction func pickPanGesture(_ sender: UIPanGestureRecognizer) {
-        if !(sender.state == .ended){ //runs twice so it fixes that problem
+        if Public.inventory.count > MAXINVENTORYSPACE{
+            pickIconOutlet.center = PICKDEFAULT //resets posistion
+            inventoryLabel.isHidden = false
+            //present(alertController!, animated: false)
+            
+        }
+        else if !(sender.state == .ended){ //runs twice so it fixes that problem
+            inventoryLabel.isHidden = true
             let loc = sender.location(in: view)
             pickIconOutlet.center = loc //puts image at drag gesture
             
@@ -89,9 +109,19 @@ class MineView: UIViewController {
                         let y2 = ores[i].location.y
                         
                         let distance = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
-                        
+                            print(distance)
                         if distance <= Public.pickaxe.spread && distance != 0{
-                            ores[other].health -= Int(((Public.pickaxe.spread - distance)/Public.pickaxe.spreadStrength))*Public.pickaxe.damage
+                            
+                            
+                             
+                            var top = Public.pickaxe.spread
+                            print("1: \(Public.pickaxe.spread) | 2: \(0) | both: \(Public.pickaxe.spread)")
+                            
+                            var bottom = (Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3)
+                            print("1: \(Public.pickaxe.spreadStrength/distance) | 2: \(Public.pickaxe.damage/3) | both: \((Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3))")
+                            
+                            print("top: \(0) | bottom: \(bottom) | both: \(bottom)")
+                            ores[other].health -= bottom
                         }
                         
                     }
@@ -195,7 +225,7 @@ class MineView: UIViewController {
         for i in 0..<randLoc.count{
             newOreNode(type: .stone, loc: randLoc[i], mount: .unmounted)
         }
-        
+        view.bringSubviewToFront(moneyOutlet)
         
     }
     
