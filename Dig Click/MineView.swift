@@ -100,7 +100,7 @@ class MineView: UIViewController {
                     sender.state = .ended //ends drag
                     
                     ores[i].health -= Public.pickaxe.damage
-                    print("Health: \(ores[i].health)")
+                    //print("Health: \(ores[i].health)")
                     pickIconOutlet.center = PICKDEFAULT //resets posistion
                     for other in 0..<ores.count{
                         let x1 = ores[other].location.x
@@ -109,19 +109,14 @@ class MineView: UIViewController {
                         let y2 = ores[i].location.y
                         
                         let distance = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
-                            print(distance)
                         if distance <= Public.pickaxe.spread && distance != 0{
                             
                             
-                             
-                            var top = Public.pickaxe.spread
-                            print("1: \(Public.pickaxe.spread) | 2: \(0) | both: \(Public.pickaxe.spread)")
-                            
-                            var bottom = (Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3)
-                            print("1: \(Public.pickaxe.spreadStrength/distance) | 2: \(Public.pickaxe.damage/3) | both: \((Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3))")
-                            
-                            print("top: \(0) | bottom: \(bottom) | both: \(bottom)")
+                            let bottom = (Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3)
+                            //print("1: \(Public.pickaxe.spreadStrength/distance) | 2: \(Public.pickaxe.damage/3) | both: \((Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3))")
                             ores[other].health -= bottom
+                            //print("top: \(0) | bottom: \(bottom) | both: \(bottom)")
+                            
                         }
                         
                     }
