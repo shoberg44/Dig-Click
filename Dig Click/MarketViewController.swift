@@ -28,6 +28,9 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
+    @IBAction func sellAllButton(_ sender: UIButton) {
+        
+    }
     @IBAction func sellButton(_ sender: UIButton) {
         var newArray: [Int] = []
         var selectedItems = collectionViewOutlet.indexPathsForSelectedItems
@@ -39,17 +42,7 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
             newArray = newArray.sorted()
             
             newArray = newArray.reversed()
-            for i in newArray{
-                
-                Public.money += Public.inventory[i].value
-                Public.inventory.remove(at: i)
-
-            }
-            collectionViewOutlet.deleteItems(at: collectionViewOutlet.indexPathsForSelectedItems!)
-            if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
-                costLabel.text = "\(formattedTipAmount)"
-            }
-            collectionViewOutlet.reloadData()
+            interpretSellArray(sellArray: newArray)
         }
         else {
           print("empty")
@@ -57,7 +50,19 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         
     }
-    
+    func interpretSellArray(sellArray: [Drop]){
+        for i in sellArray{
+            
+            Public.money += Public.inventory[i].value
+            Public.inventory.remove(at: i)
+
+        }
+        collectionViewOutlet.deleteItems(at: collectionViewOutlet.indexPathsForSelectedItems!)
+        if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
+            costLabel.text = "\(formattedTipAmount)"
+        }
+        collectionViewOutlet.reloadData()
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         Public.inventory.count
     }

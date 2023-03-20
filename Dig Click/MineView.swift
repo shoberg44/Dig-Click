@@ -17,7 +17,7 @@ class MineView: UIViewController {
     @IBOutlet weak var pickIconOutlet: UIImageView!
     
     let PICKDEFAULT: CGPoint = CGPoint(x: 196.0, y: 738.3) //constant for pick location
-    let MAXINVENTORYSPACE: Int = 15 //max space in inventory
+    let MAXINVENTORYSPACE: Int = 100 //max space in inventory
     
     var alertController: UIAlertController?
     var okAction: UIAlertAction?

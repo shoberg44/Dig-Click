@@ -15,7 +15,7 @@ class MarketCell : UICollectionViewCell{
         marketTitle.text = name
         marketIcon.image = icon
         marketValue.text = moneyFormat(value: value)
-        backgroundColor = UIColor.clear
+        //backgroundColor = UIColor.clear
     }
     func moneyFormat(value: Double)->String{
         let formatter = NumberFormatter()
