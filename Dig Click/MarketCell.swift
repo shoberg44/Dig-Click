@@ -11,11 +11,11 @@ class MarketCell : UICollectionViewCell{
     @IBOutlet weak var marketIcon: UIImageView!
     @IBOutlet weak var marketTitle: UILabel!
     @IBOutlet weak var marketValue: UILabel!
+    var isSelectedC = false
     func configure(name: String, value: Double, icon: UIImage){
         marketTitle.text = name
         marketIcon.image = icon
         marketValue.text = moneyFormat(value: value)
-        //backgroundColor = UIColor.clear
     }
     func moneyFormat(value: Double)->String{
         let formatter = NumberFormatter()
