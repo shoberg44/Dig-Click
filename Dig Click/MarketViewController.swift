@@ -29,22 +29,19 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBAction func sellAllButton(_ sender: UIButton) {
-//        var newArray = Public.inventory
-//        for i in Public.inventory{
-//
-//        }
         for i in 0..<Public.inventory.count{
             
             var e = collectionViewOutlet.cellForItem(at: [0,i]) as! MarketCell
             e.isSelectedC = true
+            e.isSelected = true
         }
+        
         collectionViewOutlet.reloadData()
         //interpretSellArray(sellArray: newArray)
     }
     @IBAction func sellButton(_ sender: UIButton) {
         var newArray: [Int] = []
         var selectedItems = collectionViewOutlet.indexPathsForSelectedItems
-        
         if selectedItems != nil {
             for i in selectedItems!{
                 newArray.append(i[1])
@@ -76,7 +73,6 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         Public.inventory.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sellCell", for: indexPath) as! MarketCell

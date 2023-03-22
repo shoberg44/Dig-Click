@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Public.purchasedPickaxes.append(Public.pickaxe)
-        Public.money += 2000
+        //Public.money += 2000
         
     }
     
