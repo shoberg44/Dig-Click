@@ -34,12 +34,13 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
             var e = collectionViewOutlet.cellForItem(at: [0,i]) as! MarketCell
             e.isSelectedC = true
             e.isSelected = true
+            print(collectionViewOutlet.indexPathsForSelectedItems!)
         }
-        
         collectionViewOutlet.reloadData()
         //interpretSellArray(sellArray: newArray)
     }
     @IBAction func sellButton(_ sender: UIButton) {
+        print(collectionViewOutlet.indexPathsForSelectedItems!)
         var newArray: [Int] = []
         var selectedItems = collectionViewOutlet.indexPathsForSelectedItems
         if selectedItems != nil {
