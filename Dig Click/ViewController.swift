@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         Public.purchasedPickaxes.append(Public.pickaxe)
         Public.money += 2000
-        for i in 0...50{
+        for i in 0...10{
             Public.inventory.append(Drop(type: .diamond))
         }
     }
