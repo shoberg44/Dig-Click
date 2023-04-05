@@ -39,6 +39,7 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
         //collectionViewOutlet.reloadData()
         
         print("after: \(collectionViewOutlet.indexPathsForSelectedItems!)")
+        sellButton(sender)
     }
     
     @IBAction func sellButton(_ sender: UIButton) {
@@ -64,7 +65,6 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
             Public.inventory.remove(at: i)
         }
         collectionViewOutlet.deleteItems(at: collectionViewOutlet.indexPathsForSelectedItems!)
-        print("after: \(collectionViewOutlet.indexPathsForSelectedItems!)")
         if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
             costLabel.text = "\(formattedTipAmount)"
         }

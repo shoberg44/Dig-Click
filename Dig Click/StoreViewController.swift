@@ -103,18 +103,20 @@ class StoreViewController: UIViewController {
             }
         }
         isAlreadyOwned(targetType: selectedType)
+        Public.defaults.set(Public.purchasedPickaxes, forKey: "Pickaxes")
     }
     func isAlreadyOwned(targetType: pickType){
+        costLabel.backgroundColor = UIColor.systemGray6
         if let formattedTipAmount = formatter.string(from: pickPrices[selectedType.rawValue]! as NSNumber) {
             costLabel.text = "\(formattedTipAmount)"
         }
-        costLabel.textColor = UIColor.black
+        costLabel.textColor = UIColor.label
         purchaseButton.setTitle("Purchase", for: .normal)
         pickPurchasedState = false
         for i in Public.purchasedPickaxes{
             if i.type == targetType{
                 costLabel.text = "Owned"
-                costLabel.textColor = UIColor.green
+                costLabel.backgroundColor = UIColor.green
                 purchaseButton.setTitle("Equip", for: .normal)
                 pickPurchasedState = true
                 if i.type == Public.pickaxe.type{
