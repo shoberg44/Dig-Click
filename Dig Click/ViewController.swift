@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 class Public{
     static var money: Double = 0
     static var inventory: [Drop] = []
@@ -19,9 +20,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Public.purchasedPickaxes.append(Public.pickaxe)
-        Public.purchasedPickaxes = Public.defaults.object(forKey: "pickaxes")
+        if let mov = Public.defaults.object(forKey: "money"){
+            Public.money = mov as! Double
+        }
+        if let mov = Public.defaults.object(forKey: "pickaxes"){
+            Public.purchasedPickaxes = mov as! [Pickaxe]
+        }
         Public.money += 2000
-        for i in 0...10{
+        for _ in 0...10{
             Public.inventory.append(Drop(type: .diamond))
         }
     }

@@ -103,7 +103,9 @@ class StoreViewController: UIViewController {
             }
         }
         isAlreadyOwned(targetType: selectedType)
-        Public.defaults.set(Public.purchasedPickaxes, forKey: "Pickaxes")
+        
+        Public.defaults.set(Public.money, forKey: "money")
+//        Public.defaults.set(Public.purchasedPickaxes, forKey: "pickaxes")
     }
     func isAlreadyOwned(targetType: pickType){
         costLabel.backgroundColor = UIColor.systemGray6
