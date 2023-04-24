@@ -26,11 +26,12 @@ class MineView: UIViewController {
     //when declaring, requires an both a CGPoint for "location" and an image for "icon"
     //within specific rock type classes use imageSet[] to get images that corrispond to that type. The location used here is hard coded and should be proc generated in the future
     
-    //var seed = UInt64(9)
-    //        let myArray = [1, 2, 3, 4, 5]
-    //        var mersenneTwister = GKMersenneTwisterRandomSource(seed: seed)
-    //        let seededOutput = mersenneTwister.arrayByShufflingObjects(in: myArray)
-    //        print(seededOutput)
+    var seedBase = UInt64(9)
+    var seed: Float
+    
+    
+    
+    
     var ores = [Rock]() //array of ores on scene
     var oreGenLoc = [CGPoint]() //array of potental ore generation spots
     var offset: CGFloat = CGFloat(Public.iconSize/2)
@@ -70,7 +71,7 @@ class MineView: UIViewController {
         switch type {
         case .stone:
             newOre = StoneRock(location: loc, mount: mount)
-        case .geode:
+        case .igneous:
             newOre = StoneRock(location: loc, mount: mount)
         case .sandstone:
             newOre = StoneRock(location: loc, mount: mount)
@@ -124,7 +125,7 @@ class MineView: UIViewController {
                 }
                 
             }
-            updateView()//updates view (just score for now)
+            updateView()
             
         }
         
@@ -138,10 +139,12 @@ class MineView: UIViewController {
         //reconizes type as its child TEMP i belive
         switch rockNode.type {
         case .stone:
-            var tempRock = rockNode as! StoneRock
+            let tempRock = rockNode as! StoneRock
             tempRock.recalculateDropChance()
-        default:
-            var tempRock = rockNode as! StoneRock
+        case .sandstone:
+            _ = rockNode as! Sandstone
+        case .igneous:
+            _ = rockNode as! Igneous
         }
         
         //gets drop
@@ -215,14 +218,21 @@ class MineView: UIViewController {
     }
     //generates the mine ore locations
     func generateMine(){
-        let oresCount = 10
-        let randLoc = oreGenLoc.shuffled().prefix(oresCount)
+        let ORESCOUNT = 10
+        let randLoc = oreGenLoc.shuffled().prefix(ORESCOUNT)
+        
         for i in 0..<randLoc.count{
             newOreNode(type: .stone, loc: randLoc[i], mount: .unmounted)
         }
         view.bringSubviewToFront(moneyOutlet)
         
     }
-    
+    func generateSeed(base: Int){
+        let myArray = [1, 2, 3, 4, 5]
+        var mySeed: Float
+        var mersenneTwister = GKMersenneTwisterRandomSource(seed: UInt64(seed))
+        let seededOutput = mersenneTwister.arrayByShufflingObjects(in: myArray)
+        mySeed = Float.random(in: 0..<1, using: &mersenneTwister)        print(seededOutput)
+    }
         
 }

@@ -16,7 +16,7 @@
 		E63194C929B8CC68009EAC33 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63194C829B8CC68009EAC33 /* StoreViewController.swift */; };
 		E65772AE29AF8B5500842B75 /* Pickaxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65772AD29AF8B5500842B75 /* Pickaxe.swift */; };
 		E69BC4B7299A8477008D6954 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69BC4B6299A8477008D6954 /* InventoryViewController.swift */; };
-		E6A9CD95299D18920078A75F /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A9CD94299D18920078A75F /* Rock.swift */; };
+		E6A9CD95299D18920078A75F /* Ores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A9CD94299D18920078A75F /* Ores.swift */; };
 		E6E357232992909D00AEC80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E357222992909D00AEC80D /* AppDelegate.swift */; };
 		E6E357252992909D00AEC80D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E357242992909D00AEC80D /* SceneDelegate.swift */; };
 		E6E357272992909D00AEC80D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E357262992909D00AEC80D /* ViewController.swift */; };
@@ -56,7 +56,7 @@
 		E63194C829B8CC68009EAC33 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		E65772AD29AF8B5500842B75 /* Pickaxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pickaxe.swift; sourceTree = "<group>"; };
 		E69BC4B6299A8477008D6954 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
-		E6A9CD94299D18920078A75F /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
+		E6A9CD94299D18920078A75F /* Ores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ores.swift; sourceTree = "<group>"; };
 		E6E3571F2992909D00AEC80D /* Dig Click.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dig Click.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6E357222992909D00AEC80D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6E357242992909D00AEC80D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 				E69BC4B6299A8477008D6954 /* InventoryViewController.swift */,
 				E60FA260299531F8007EAF04 /* MineView.swift */,
 				E65772AD29AF8B5500842B75 /* Pickaxe.swift */,
-				E6A9CD94299D18920078A75F /* Rock.swift */,
+				E6A9CD94299D18920078A75F /* Ores.swift */,
 				5826BA95299731BE009F2500 /* OreProtocol.swift */,
 				5826BA9729973DB4009F2500 /* Drop.swift */,
 				E6E3572E2992909D00AEC80D /* Assets.xcassets */,
@@ -291,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6A9CD95299D18920078A75F /* Rock.swift in Sources */,
+				E6A9CD95299D18920078A75F /* Ores.swift in Sources */,
 				E6E357272992909D00AEC80D /* ViewController.swift in Sources */,
 				E65772AE29AF8B5500842B75 /* Pickaxe.swift in Sources */,
 				E6E357232992909D00AEC80D /* AppDelegate.swift in Sources */,
