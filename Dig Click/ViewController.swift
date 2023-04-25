@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Public.purchasedPickaxes.append(Public.pickaxe)
+        
         if let mov = Public.defaults.object(forKey: "money"){
             Public.money = mov as! Double
         }

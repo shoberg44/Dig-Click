@@ -14,8 +14,8 @@
 import Foundation
 import UIKit
 class StoneRock: Rock{
-    
-    var imageSet: [UIImage] = [UIImage(named: "RockVar1.png")!]
+    let baseHealth: Double = 100
+    var imageSet: [UIImage] = [UIImage(named: "RockVar2.png")!]
     var imageView: UIImageView
     var location: CGPoint
     var health: Double = 100
@@ -77,11 +77,11 @@ class StoneRock: Rock{
     }
 }
 class Sandstone: Rock{
-    
-    var imageSet: [UIImage] = [UIImage(named: "RockVar2.png")!]
+    let baseHealth: Double = 65
+    var imageSet: [UIImage] = [UIImage(named: "RockVar1.png")!]
     var imageView: UIImageView
     var location: CGPoint
-    var health: Double = 70
+    var health: Double = 65
     var lives: Int = 1
     var state: Bool = false
     var type: rockType = .sandstone
@@ -140,7 +140,7 @@ class Sandstone: Rock{
     }
 }
 class Igneous: Rock{
-    
+    let baseHealth: Double = 150
     var imageSet: [UIImage] = [UIImage(named: "RockVar3.png")!]
     var imageView: UIImageView
     var location: CGPoint

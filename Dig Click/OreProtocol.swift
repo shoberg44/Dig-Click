@@ -22,6 +22,7 @@ public enum mountedType: String {
 }
 
 public protocol Rock{
+    var baseHealth: Double {get}
     var imageSet: [UIImage] {get set}
     var health: Double { get set }
     var lives: Int { get set }

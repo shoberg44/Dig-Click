@@ -25,10 +25,8 @@ class MineView: UIViewController {
     ///Rock Decaration
     //when declaring, requires an both a CGPoint for "location" and an image for "icon"
     //within specific rock type classes use imageSet[] to get images that corrispond to that type. The location used here is hard coded and should be proc generated in the future
-    
-    var seedBase = UInt64(9)
-    var seed: Float
-    
+    var seed: UInt64 = UInt64(9)
+    var mersenneTwister: GKMersenneTwisterRandomSource = GKMersenneTwisterRandomSource(seed: UInt64(0)) //seed generator generates a new number from
     
     
     
@@ -37,6 +35,7 @@ class MineView: UIViewController {
     var offset: CGFloat = CGFloat(Public.iconSize/2)
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(ores)
         alertController = UIAlertController(title: "Not Enough Space", message: "Your inventory has a maximum capacity of \(MAXINVENTORYSPACE). You have reached that limit. Sell items to get more space!", preferredStyle: .alert)
         okAction = UIAlertAction(title: "Back", style: .default){ [self]_ in
             alertController?.dismiss(animated: false)
@@ -72,9 +71,9 @@ class MineView: UIViewController {
         case .stone:
             newOre = StoneRock(location: loc, mount: mount)
         case .igneous:
-            newOre = StoneRock(location: loc, mount: mount)
+            newOre = Igneous(location: loc, mount: mount)
         case .sandstone:
-            newOre = StoneRock(location: loc, mount: mount)
+            newOre = Sandstone(location: loc, mount: mount)
         }
         //append object to ore array
         ores.append(newOre)
@@ -199,8 +198,8 @@ class MineView: UIViewController {
                 ores[i].healthBar.removeFromSuperview()
                 
             }
-            else if ores[i].health < 100{
-                ores[i].healthBar.progress = Float(ores[i].health) / 100
+            else if ores[i].health < ores[i].baseHealth{
+                ores[i].healthBar.progress = Float(ores[i].health / ores[i].baseHealth)
                 view.addSubview(ores[i].healthBar)//adds health bar to subview
             }
         }
@@ -219,20 +218,26 @@ class MineView: UIViewController {
     //generates the mine ore locations
     func generateMine(){
         let ORESCOUNT = 10
-        let randLoc = oreGenLoc.shuffled().prefix(ORESCOUNT)
+        let randLoc = oreGenLoc.shuffled().prefix(ORESCOUNT) //from all ore spawns, takes a random # of them
         
         for i in 0..<randLoc.count{
-            newOreNode(type: .stone, loc: randLoc[i], mount: .unmounted)
+            let randOre = generateSeed(base: UInt64(10), upper: 6)
+            if randOre == 1 {
+                newOreNode(type: .igneous, loc: randLoc[i], mount: .unmounted)
+            }
+            else if randOre <= 3{
+                newOreNode(type: .sandstone, loc: randLoc[i], mount: .unmounted)
+            }
+            else{
+                newOreNode(type: .stone, loc: randLoc[i], mount: .unmounted)
+            }
         }
         view.bringSubviewToFront(moneyOutlet)
         
     }
-    func generateSeed(base: Int){
-        let myArray = [1, 2, 3, 4, 5]
-        var mySeed: Float
-        var mersenneTwister = GKMersenneTwisterRandomSource(seed: UInt64(seed))
-        let seededOutput = mersenneTwister.arrayByShufflingObjects(in: myArray)
-        mySeed = Float.random(in: 0..<1, using: &mersenneTwister)        print(seededOutput)
+    func generateSeed(base: UInt64, upper: Int)->Int{
+        let seededOutput = mersenneTwister.nextInt(upperBound: upper) //generates from 1 to upper-1 inclusive
+        return seededOutput
     }
         
 }
