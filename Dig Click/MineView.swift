@@ -45,8 +45,8 @@ class MineView: UIViewController {
         }
         alertController!.addAction(okAction!)
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backround")!)
-        
-        pickIconOutlet.image = Public.pickaxe.image
+        print("HERE: \(Public.pickaxe.image)")
+        pickIconOutlet.image = UIImage(named:Public.pickaxe.image)
         
         for UIImage in view.subviews{
             if UIImage.tag == 33{
@@ -204,6 +204,7 @@ class MineView: UIViewController {
             }
         }
         ores.removeAll(where: {$0.health <= 0})
+        
         //formats money
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency

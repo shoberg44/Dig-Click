@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-public enum pickType: String{
+public enum pickType: String, Codable{
     case wood = "wood"
     case iron = "iron"
     case diamond = "diamond"
@@ -15,18 +15,27 @@ public enum pickType: String{
     case silver = "silver"
     case silicon = "silicon"
 }
-class Pickaxe{
+class Pickaxe: Codable{
     
-    static var imageSet: [UIImage] = [UIImage(named: "SteelPick")!,UIImage(named: "SilverPick.png")!,UIImage(named: "DiamondPick.png")!,UIImage(named: "IronPick.png")!,UIImage(named: "WoodPick.png")!,UIImage(named: "SiliconPick.png")!]
-    var image: UIImage
+    static var imageSet: [String] = ["SteelPick.png","SilverPick.png","DiamondPick.png","IronPick.png","WoodPick.png","SiliconPick.png"]
+    var image: String = "WoodPick.png"
     var damage: Double = 50
     var spread: Double = 0 //cutoff distance
     var spreadStrength: Double = 4 //lower strength means higher damage
     var resistance: Int = 1 //hits before reset
     var type: pickType = .wood
     
+    init(damage: Double, spread: Double, spreadStrength: Double, resistance: Int, type: pickType) {
+        self.damage = damage
+        self.spread = spread
+        self.spreadStrength = spreadStrength
+        self.resistance = resistance
+        self.type = type
+    }
+    
     init(type: pickType) {
         self.type = type
+        
         switch type {
         case .wood:
             damage = 10
@@ -59,8 +68,7 @@ class Pickaxe{
             spread = 300
             spreadStrength = 100
             
-        
+            
         }
     }
-    
 }

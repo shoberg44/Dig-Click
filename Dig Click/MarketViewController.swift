@@ -91,7 +91,7 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MarketCell
-        cell.backgroundColor = UIColor.tintColor
+        cell.backgroundColor = UIColor.systemGreen
     }
     
     
