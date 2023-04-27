@@ -35,7 +35,6 @@ class MineView: UIViewController {
     var offset: CGFloat = CGFloat(Public.iconSize/2)
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(ores)
         alertController = UIAlertController(title: "Not Enough Space", message: "Your inventory has a maximum capacity of \(MAXINVENTORYSPACE). You have reached that limit. Sell items to get more space!", preferredStyle: .alert)
         okAction = UIAlertAction(title: "Back", style: .default){ [self]_ in
             alertController?.dismiss(animated: false)
@@ -45,7 +44,6 @@ class MineView: UIViewController {
         }
         alertController!.addAction(okAction!)
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backround")!)
-        print("HERE: \(Public.pickaxe.image)")
         pickIconOutlet.image = UIImage(named:Public.pickaxe.image)
         
         for UIImage in view.subviews{
@@ -134,25 +132,13 @@ class MineView: UIViewController {
     }
     
     func dropOre(_ rockNode: Rock){
-        
-        //reconizes type as its child TEMP i belive
-        switch rockNode.type {
-        case .stone:
-            let tempRock = rockNode as! StoneRock
-            tempRock.recalculateDropChance()
-        case .sandstone:
-            _ = rockNode as! Sandstone
-        case .igneous:
-            _ = rockNode as! Igneous
-        }
-        
         //gets drop
         let currentDrop = rockNode.breakEvent()
         Public.inventory.append(currentDrop)
         print(currentDrop.name)
         
         //creates drop image view
-        let image = currentDrop.picture
+        let image = UIImage(named: currentDrop.picture)
         let imageView = UIImageView(image: image)//refrence?
         imageView.frame = CGRect(x: rockNode.location.x, y: rockNode.location.y, width: 80, height: 80)
         view.addSubview(imageView)
@@ -176,13 +162,15 @@ class MineView: UIViewController {
                     imageView.center.y -= pow(time, 2)*16+100*time-20
                     if iterations >= 15{
                         imageView.isHidden = true
+                        imageView.willRemoveSubview(imageView)
                         timer2.invalidate()
                     }
                 }
                 
             }
         }
-        
+        //post animation save
+        save()
     }
         
     
@@ -240,5 +228,21 @@ class MineView: UIViewController {
         let seededOutput = mersenneTwister.nextInt(upperBound: upper) //generates from 1 to upper-1 inclusive
         return seededOutput
     }
-        
+    func save(){
+        print("saved money | inventory")
+        Public.defaults.set(Public.money, forKey: "money")
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+
+            // Encode Note
+            let data = try encoder.encode(Public.inventory)
+
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "inventory")
+
+        } catch {
+            print("Unable to Encode inventory (\(error))")
+        }
+    }
 }

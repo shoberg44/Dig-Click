@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -93,7 +94,14 @@
                             <constraint firstItem="oKs-Bc-ihA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="1" id="qkf-3s-f6L"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9Ov-T3-sK1"/>
+                    <navigationItem key="navigationItem" id="9Ov-T3-sK1">
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Bdn-nn-m11">
+                            <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <segue destination="oKs-Ry-boJ" kind="show" id="QdF-Ia-sgV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -515,6 +523,31 @@
             </objects>
             <point key="canvasLocation" x="1104.6153846153845" y="-1237.6777251184833"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="6aP-UJ-VOJ">
+            <objects>
+                <viewController title="Settings" id="oKs-Ry-boJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ECs-em-uWg">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="clear saved slot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lde-Z4-TE8">
+                                <rect key="frame" x="112" y="177" width="119" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f3S-fj-UpL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Ch-Uw-89S"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g6H-UB-OKI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="61.538461538461533" y="-699.52606635071083"/>
+        </scene>
         <!--Share-->
         <scene sceneID="1WR-Jp-cCL">
             <objects>
@@ -813,7 +846,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7xc-Up-Wbm"/>
+        <segue reference="a6q-6t-Mki"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="DiamondPick" width="189" height="209"/>
@@ -823,6 +856,7 @@
         <image name="SteelPick" width="189" height="209"/>
         <image name="WoodPick" width="189" height="209"/>
         <image name="figure.taichi" catalog="system" width="106" height="128"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="person.badge.plus" catalog="system" width="128" height="125"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="labelColor">

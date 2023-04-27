@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import GameplayKit
-public enum dropType: String {
+public enum dropType: String, Codable {
 case pebble = "pebble"
 case diamond = "diamond"
 case coal = "coal"
@@ -17,10 +17,10 @@ case ruby = "ruby"
 case rarity = "rarity"
 case unknown = ""
 }
-public class Drop{
+public class Drop: Codable{
     var value: Double
     var grade: Int = 50 //a value for a ore that ranges from 50 - 100, 0 for non gradable metal/objects
-    var picture: UIImage = UIImage(systemName: "nosign")!
+    var picture: String = "nosign"
     var meltable: Bool
     var weight: Double
     var type: dropType
@@ -28,7 +28,7 @@ public class Drop{
     var canSell: Bool
     var name: String
 
-    init(value: Double, picture: UIImage, meltable: Bool, weight: Double, type: dropType, isOre: Bool, canSell: Bool, name: String, grade: Int) { //manual
+    init(value: Double, picture: String, meltable: Bool, weight: Double, type: dropType, isOre: Bool, canSell: Bool, name: String, grade: Int) { //manual
         self.value = value
         self.grade = grade
         self.picture = picture
@@ -62,14 +62,14 @@ public class Drop{
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
-            picture = UIImage(named: "pebbles")!
+            picture = "pebbles"
         case .coal:
             value = 0.33
             meltable = false
             weight = 1
             canSell = true
             isOre = true
-            picture = UIImage(named: "coal")!
+            picture = "coal"
         case .copper:
             value = 1
             meltable = true
@@ -77,7 +77,7 @@ public class Drop{
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
-            picture = UIImage(named: "copper2")!
+            picture = "copper2"
         case .diamond:
             value = 25
             meltable = true
@@ -85,7 +85,7 @@ public class Drop{
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
-            picture = UIImage(named: "diamond")!
+            picture = "diamond"
         case .ruby:
             value = 10
             meltable = true
@@ -93,7 +93,7 @@ public class Drop{
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
-            picture = UIImage(named: "ruby")!
+            picture = "ruby"
         case .rarity:
             value = 0
             meltable = false
@@ -101,7 +101,7 @@ public class Drop{
             canSell = true
             isOre = true
             grade = 1
-            picture = UIImage(named: "rarity")!
+            picture = "rarity"
         case .unknown:
             value = -1
             meltable = false

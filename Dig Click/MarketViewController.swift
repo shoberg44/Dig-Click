@@ -30,20 +30,17 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBAction func sellAllButton(_ sender: UIButton) {
-        print("before: \(collectionViewOutlet.indexPathsForSelectedItems!)")
         collectionViewOutlet.allowsSelection = true
         for i in 0..<Public.inventory.count{
             collectionViewOutlet.selectItem(at: [0,i], animated: true, scrollPosition: .top)
             //update cells somehow
         }
-        //collectionViewOutlet.reloadData()
         
-        print("after: \(collectionViewOutlet.indexPathsForSelectedItems!)")
         sellButton(sender)
     }
     
     @IBAction func sellButton(_ sender: UIButton) {
-        print("Selling: \(collectionViewOutlet.indexPathsForSelectedItems!)")
+//        print("Selling: \(collectionViewOutlet.indexPathsForSelectedItems!)")
         var newArray: [Int] = []
         let selectedItems = collectionViewOutlet.indexPathsForSelectedItems
         if selectedItems != nil {
@@ -93,6 +90,22 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
         let cell = collectionView.cellForItem(at: indexPath) as! MarketCell
         cell.backgroundColor = UIColor.systemGreen
     }
-    
+    func save(){
+        print("saved money | inventory")
+        Public.defaults.set(Public.money, forKey: "money")
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+
+            // Encode Note
+            let data = try encoder.encode(Public.inventory)
+
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "inventory")
+
+        } catch {
+            print("Unable to Encode inventory (\(error))")
+        }
+    }
     
 }

@@ -103,9 +103,7 @@ class StoreViewController: UIViewController {
             }
         }
         isAlreadyOwned(targetType: selectedType)
-        
-        Public.defaults.set(Public.money, forKey: "money")
-//        Public.defaults.set(Public.purchasedPickaxes, forKey: "pickaxes")
+        save()
     }
     func isAlreadyOwned(targetType: pickType){
         costLabel.backgroundColor = UIColor.systemGray6
@@ -128,7 +126,36 @@ class StoreViewController: UIViewController {
             }
         }
     }
+    func save(){
+        print("saved money | purchasedPic | pickaxe")
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
 
+            // Encode Note
+            let data = try encoder.encode(Public.pickaxe)
+
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "pickaxe")
+
+        } catch {
+            print("Unable to Encode pickaxe (\(error))")
+        }
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+
+            // Encode Note
+            let data = try encoder.encode(Public.purchasedPickaxes)
+
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "pickaxes")
+
+        } catch {
+            print("Unable to Encode Pickaxes (\(error))")
+        }
+        Public.defaults.set(Public.money, forKey: "money")
+    }
 
     
     

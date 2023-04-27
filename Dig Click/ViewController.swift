@@ -20,7 +20,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Public.purchasedPickaxes.append(Public.pickaxe)
+        load()
+        Public.money += 2000
+        for _ in 0...10{
+            Public.inventory.append(Drop(type: .diamond))
+        }
         
+    }
+    func load(){
+        print("loaded all")
         if let mov = Public.defaults.object(forKey: "money"){
             Public.money = mov as! Double
         }
@@ -36,48 +44,37 @@ class ViewController: UIViewController {
                 let decoder = JSONDecoder()
 
                 // Decode Note
-                let note = try decoder.decode(Note.self, from: data)
+                Public.pickaxe = try decoder.decode(Pickaxe.self, from: data)
 
             } catch {
-                print("Unable to Decode Pickaxe (\(error))")
+                print("Unable to Decode pickaxe (\(error))")
             }
         }
-        
-        
-        
-        
-        do {
-            // Create JSON Encoder
-            let encoder = JSONEncoder()
+        if let data = UserDefaults.standard.data(forKey: "pickaxes") {
+            do {
+                // Create JSON Decoder
+                let decoder = JSONDecoder()
 
-            // Encode Note
-            let data = try encoder.encode(Public.purchasedPickaxes)
+                // Decode Note
+                Public.purchasedPickaxes = try decoder.decode([Pickaxe].self, from: data)
 
-            // Write/Set Data
-            UserDefaults.standard.set(data, forKey: "pickaxes")
-
-        } catch {
-            print("Unable to Encode Note (\(error))")
+            } catch {
+                print("Unable to Decode purchased pickaxes (\(error))")
+            }
         }
-        do {
-            // Create JSON Encoder
-            let encoder = JSONEncoder()
+        if let data = UserDefaults.standard.data(forKey: "inventory") {
+            do {
+                // Create JSON Decoder
+                let decoder = JSONDecoder()
 
-            // Encode Note
-            let data = try encoder.encode(Public.pickaxe)
+                // Decode Note
+                Public.inventory = try decoder.decode([Drop].self, from: data)
 
-            // Write/Set Data
-            UserDefaults.standard.set(data, forKey: "pickaxe")
-
-        } catch {
-            print("Unable to Encode Note (\(error))")
-        }
-        Public.money += 2000
-        for _ in 0...10{
-            Public.inventory.append(Drop(type: .diamond))
+            } catch {
+                print("Unable to Decode inventory (\(error))")
+            }
         }
     }
-    
 
 }
 
