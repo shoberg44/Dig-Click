@@ -35,7 +35,6 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
             collectionViewOutlet.selectItem(at: [0,i], animated: true, scrollPosition: .top)
             //update cells somehow
         }
-        
         sellButton(sender)
     }
     
@@ -54,7 +53,7 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
         else {
           print("empty")
         }
-        
+        save()
     }
     func interpretSellArray(sellArray: [Int]){
         for i in sellArray{

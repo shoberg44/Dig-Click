@@ -25,8 +25,8 @@ class MineView: UIViewController {
     ///Rock Decaration
     //when declaring, requires an both a CGPoint for "location" and an image for "icon"
     //within specific rock type classes use imageSet[] to get images that corrispond to that type. The location used here is hard coded and should be proc generated in the future
-    var seed: UInt64 = UInt64(9)
-    var mersenneTwister: GKMersenneTwisterRandomSource = GKMersenneTwisterRandomSource(seed: UInt64(0)) //seed generator generates a new number from
+
+    var mersenneTwister: GKMersenneTwisterRandomSource = GKMersenneTwisterRandomSource(seed: Public.seed) //seed generator generates a new number from
     
     
     

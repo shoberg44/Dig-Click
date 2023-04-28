@@ -14,6 +14,7 @@
 		E628E8F629C1F2BD0053F595 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628E8F529C1F2BD0053F595 /* MarketViewController.swift */; };
 		E628E8F829C1F3C80053F595 /* MarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628E8F729C1F3C80053F595 /* MarketCell.swift */; };
 		E63194C929B8CC68009EAC33 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63194C829B8CC68009EAC33 /* StoreViewController.swift */; };
+		E645092729FBF3CB007BE233 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E645092629FBF3CB007BE233 /* SettingsViewController.swift */; };
 		E65772AE29AF8B5500842B75 /* Pickaxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65772AD29AF8B5500842B75 /* Pickaxe.swift */; };
 		E69BC4B7299A8477008D6954 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69BC4B6299A8477008D6954 /* InventoryViewController.swift */; };
 		E6A9CD95299D18920078A75F /* Ores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A9CD94299D18920078A75F /* Ores.swift */; };
@@ -54,6 +55,7 @@
 		E628E8F529C1F2BD0053F595 /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		E628E8F729C1F3C80053F595 /* MarketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCell.swift; sourceTree = "<group>"; };
 		E63194C829B8CC68009EAC33 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		E645092629FBF3CB007BE233 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E65772AD29AF8B5500842B75 /* Pickaxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pickaxe.swift; sourceTree = "<group>"; };
 		E69BC4B6299A8477008D6954 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		E6A9CD94299D18920078A75F /* Ores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ores.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				E6E357222992909D00AEC80D /* AppDelegate.swift */,
 				E6E357242992909D00AEC80D /* SceneDelegate.swift */,
 				E6E357282992909D00AEC80D /* Main.storyboard */,
+				E645092629FBF3CB007BE233 /* SettingsViewController.swift */,
 				E628E8F529C1F2BD0053F595 /* MarketViewController.swift */,
 				E628E8F729C1F3C80053F595 /* MarketCell.swift */,
 				E63194C829B8CC68009EAC33 /* StoreViewController.swift */,
@@ -299,6 +302,7 @@
 				E628E8F829C1F3C80053F595 /* MarketCell.swift in Sources */,
 				E60A934E299BC43F009F633E /* InventoryCell.swift in Sources */,
 				E60FA261299531F8007EAF04 /* MineView.swift in Sources */,
+				E645092729FBF3CB007BE233 /* SettingsViewController.swift in Sources */,
 				5826BA96299731BE009F2500 /* OreProtocol.swift in Sources */,
 				E6E357252992909D00AEC80D /* SceneDelegate.swift in Sources */,
 				E63194C929B8CC68009EAC33 /* StoreViewController.swift in Sources */,
