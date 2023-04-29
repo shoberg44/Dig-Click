@@ -17,7 +17,7 @@ class MineView: UIViewController {
     @IBOutlet weak var pickIconOutlet: UIImageView!
     
     let PICKDEFAULT: CGPoint = CGPoint(x: 196.0, y: 738.3) //constant for pick location
-    let MAXINVENTORYSPACE: Int = 100 //max space in inventory
+    let MAXINVENTORYSPACE: Int = 999999999 //max space in inventory
     
     var alertController: UIAlertController?
     var okAction: UIAlertAction?
@@ -80,56 +80,98 @@ class MineView: UIViewController {
         view.addSubview(newOre.imageView)
     }
     
-    @IBAction func pickPanGesture(_ sender: UIPanGestureRecognizer) {
-        if Public.inventory.count > MAXINVENTORYSPACE{
-            pickIconOutlet.center = PICKDEFAULT //resets posistion
-            inventoryLabel.isHidden = false
-            //present(alertController!, animated: false)
-            
-        }
-        else if !(sender.state == .ended){ //runs twice so it fixes that problem
-            inventoryLabel.isHidden = true
+    @IBAction func newPanGesture(_ sender: UIPanGestureRecognizer) {
+        if !(sender.state == .ended){
             let loc = sender.location(in: view)
             pickIconOutlet.center = loc //puts image at drag gesture
-            
-            for i in 0..<ores.count{ //finds ore
-            
+           for i in 0..<ores.count{ //finds ore
+
                 if (CGRectIntersectsRect(ores[i].imageView.frame, pickIconOutlet.frame)) {//detects collision
                     sender.state = .ended //ends drag
-                    
+
                     ores[i].health -= Public.pickaxe.damage
-                    //print("Health: \(ores[i].health)")
                     pickIconOutlet.center = PICKDEFAULT //resets posistion
+                    
+                    
                     for other in 0..<ores.count{
                         let x1 = ores[other].location.x
                         let x2 = ores[i].location.x
                         let y1 = ores[other].location.y
                         let y2 = ores[i].location.y
-                        
+
                         let distance = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
                         if distance <= Public.pickaxe.spread && distance != 0{
-                            
-                            
+
+
                             let bottom = (Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3)
                             //print("1: \(Public.pickaxe.spreadStrength/distance) | 2: \(Public.pickaxe.damage/3) | both: \((Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3))")
                             ores[other].health -= bottom
                             //print("top: \(0) | bottom: \(bottom) | both: \(bottom)")
-                            
+
                         }
-                        
+
                     }
-                    
+
                 }
-                
+
             }
-            updateView()
-            
         }
-        
-        
-        
-        
+        else{
+            pickIconOutlet.center = PICKDEFAULT
+        }
+        updateView()
     }
+//    @IBAction func pickPanGesture(_ sender: UIPanGestureRecognizer) {
+//        
+//        if Public.inventory.count > MAXINVENTORYSPACE{
+//            pickIconOutlet.center = PICKDEFAULT //resets posistion
+//            inventoryLabel.isHidden = false
+//            //present(alertController!, animated: false)
+//
+//        }
+//        if !(sender.state == .ended){ //runs twice so it fixes that problem
+//            inventoryLabel.isHidden = true
+//            let loc = sender.location(in: view)
+//            pickIconOutlet.center = loc //puts image at drag gesture
+//
+//            for i in 0..<ores.count{ //finds ore
+//
+//                if (CGRectIntersectsRect(ores[i].imageView.frame, pickIconOutlet.frame)) {//detects collision
+//                    sender.state = .ended //ends drag
+//
+//                    ores[i].health -= Public.pickaxe.damage
+//                    //print("Health: \(ores[i].health)")
+//                    pickIconOutlet.center = PICKDEFAULT //resets posistion
+//                    for other in 0..<ores.count{
+//                        let x1 = ores[other].location.x
+//                        let x2 = ores[i].location.x
+//                        let y1 = ores[other].location.y
+//                        let y2 = ores[i].location.y
+//
+//                        let distance = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
+//                        if distance <= Public.pickaxe.spread && distance != 0{
+//
+//
+//                            let bottom = (Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3)
+//                            //print("1: \(Public.pickaxe.spreadStrength/distance) | 2: \(Public.pickaxe.damage/3) | both: \((Public.pickaxe.spreadStrength/distance) * (Public.pickaxe.damage/3))")
+//                            ores[other].health -= bottom
+//                            //print("top: \(0) | bottom: \(bottom) | both: \(bottom)")
+//
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//            updateView()
+//
+//        }
+//        
+//        
+//        
+//        
+//    }
     
     func dropOre(_ rockNode: Rock){
         //gets drop

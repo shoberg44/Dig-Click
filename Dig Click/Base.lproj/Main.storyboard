@@ -372,6 +372,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Lvg-6Y-D7x"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="PVS-Xn-WQU" appends="YES" id="5GC-yn-VLf"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="lPM-Fq-Ph9"/>
                     <connections>
@@ -385,6 +389,11 @@
                 <panGestureRecognizer minimumNumberOfTouches="1" id="q8M-9a-IgX">
                     <connections>
                         <action selector="pickPanGesture:" destination="xfA-a0-POU" id="oRm-dC-noq"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="PVS-Xn-WQU">
+                    <connections>
+                        <action selector="newPanGesture:" destination="xfA-a0-POU" id="QJp-99-Qkn"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
@@ -882,7 +891,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a6q-6t-Mki"/>
+        <segue reference="7xc-Up-Wbm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="DiamondPick" width="189" height="209"/>
