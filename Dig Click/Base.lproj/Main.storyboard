@@ -538,16 +538,24 @@
                                     <action selector="clearProgressButton:" destination="oKs-Ry-boJ" eventType="touchUpInside" id="0cQ-9X-XJS"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="98" translatesAutoresizingMaskIntoConstraints="NO" id="EvH-ai-CAr">
-                                <rect key="frame" x="55" y="154" width="280.66666666666669" height="34.333333333333343"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="EvH-ai-CAr">
+                                <rect key="frame" x="38" y="154" width="314" height="34.333333333333343"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Custom Seed" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6NN-IG-Zrq">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Custom Seed" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6NN-IG-Zrq">
                                         <rect key="frame" x="0.0" y="0.0" width="115" height="34.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uj2-44-ODW">
+                                        <rect key="frame" x="137" y="0.0" width="87.333333333333314" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Random"/>
+                                        <connections>
+                                            <action selector="randomSeedButton:" destination="oKs-Ry-boJ" eventType="touchUpInside" id="Eot-NR-202"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7j-kL-jGU">
-                                        <rect key="frame" x="213" y="0.0" width="67.666666666666686" height="34.333333333333336"/>
+                                        <rect key="frame" x="246.33333333333329" y="0.0" width="67.666666666666657" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Apply"/>
                                         <connections>
@@ -560,17 +568,16 @@
                         <viewLayoutGuide key="safeArea" id="f3S-fj-UpL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="QYS-sy-Hnl" firstAttribute="leading" secondItem="f3S-fj-UpL" secondAttribute="leading" constant="127" id="25Q-Q9-8OA"/>
-                            <constraint firstItem="f3S-fj-UpL" firstAttribute="trailing" secondItem="QYS-sy-Hnl" secondAttribute="trailing" constant="127" id="4Hr-4d-e0a"/>
-                            <constraint firstItem="f3S-fj-UpL" firstAttribute="trailing" secondItem="EvH-ai-CAr" secondAttribute="trailing" constant="54.329999999999998" id="81J-A9-ckK"/>
-                            <constraint firstItem="QYS-sy-Hnl" firstAttribute="top" secondItem="f3S-fj-UpL" secondAttribute="top" constant="21" id="EKW-iq-4Va"/>
-                            <constraint firstItem="EvH-ai-CAr" firstAttribute="top" secondItem="QYS-sy-Hnl" secondAttribute="bottom" constant="7.6699999999999999" id="EUI-uI-J4x"/>
-                            <constraint firstItem="EvH-ai-CAr" firstAttribute="leading" secondItem="f3S-fj-UpL" secondAttribute="leading" constant="55" id="FpU-gb-Eh8"/>
+                            <constraint firstItem="EvH-ai-CAr" firstAttribute="centerX" secondItem="ECs-em-uWg" secondAttribute="centerX" id="Jw8-vb-LLF"/>
+                            <constraint firstItem="EvH-ai-CAr" firstAttribute="centerX" secondItem="QYS-sy-Hnl" secondAttribute="centerX" id="O41-wU-oEL"/>
+                            <constraint firstItem="f3S-fj-UpL" firstAttribute="bottom" secondItem="EvH-ai-CAr" secondAttribute="bottom" constant="621.66666666666663" id="TrO-hk-eml"/>
+                            <constraint firstItem="EvH-ai-CAr" firstAttribute="top" secondItem="QYS-sy-Hnl" secondAttribute="bottom" constant="7.6666666666666856" id="pSO-me-Wdp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Ch-Uw-89S"/>
                     <connections>
                         <outlet property="customSeedTextField" destination="6NN-IG-Zrq" id="lgz-5a-7q1"/>
+                        <outlet property="randSeedOutlet" destination="Uj2-44-ODW" id="y6r-hN-mcc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6H-UB-OKI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

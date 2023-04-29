@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 class Public{
+    static var randomSeed: Bool = true
     static var money: Double = 0
     static var inventory: [Drop] = []
     static var pickaxe: Pickaxe = Pickaxe(type: .wood)
@@ -22,6 +23,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //Public.purchasedPickaxes.append(Public.pickaxe)
         load()
+        if Public.randomSeed{
+            Public.seed = UInt64.random(in: 0..<9999999)
+        }
         Public.money += 2000
         for _ in 0...10{
             Public.inventory.append(Drop(type: .diamond))

@@ -209,8 +209,13 @@ class MineView: UIViewController {
         let ORESCOUNT = 10
         let randLoc = oreGenLoc.shuffled().prefix(ORESCOUNT) //from all ore spawns, takes a random # of them
         
+        if Public.randomSeed{
+            Public.seed = UInt64.random(in: 0..<9999999)
+            print("new seed \(Public.seed)")
+        }
+        
         for i in 0..<randLoc.count{
-            let randOre = generateSeed(base: UInt64(10), upper: 6)
+            let randOre = generateSeed(base: Public.seed, upper: 6)
             if randOre == 1 {
                 newOreNode(type: .igneous, loc: randLoc[i], mount: .unmounted)
             }

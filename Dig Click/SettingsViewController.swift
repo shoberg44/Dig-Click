@@ -9,13 +9,32 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var randSeedOutlet: UIButton!
     @IBOutlet weak var customSeedTextField: UITextField!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        customSeedTextField.text = "\(Public.seed)"
+        randSeedOutlet.backgroundColor = .clear
+        print(Public.randomSeed)
+        if Public.randomSeed{
+            randSeedOutlet.backgroundColor = .green
+        }
     }
     
+    @IBAction func randomSeedButton(_ sender: UIButton) {
+        switch Public.randomSeed {
+        case true:
+            sender.backgroundColor = .clear
+            Public.randomSeed = false
+        case false:
+            sender.backgroundColor = .green
+            Public.randomSeed = true
+        }
+    }
     @IBAction func clearProgressButton(_ sender: UIButton) {
+        
         Public.money = 0
         Public.pickaxe = Pickaxe(type: .wood)
         Public.purchasedPickaxes = [Pickaxe(type: .wood)]
@@ -27,6 +46,11 @@ class SettingsViewController: UIViewController {
     }
     @IBAction func applySeedButton(_ sender: UIButton) {
         let numbers = Int(customSeedTextField.text!) ?? 0
+        customSeedTextField.text = "\(numbers)"
         Public.seed = UInt64(numbers)
+        if Public.randomSeed{
+            randSeedOutlet.backgroundColor = .clear
+            Public.randomSeed = false
+        }
     }
 }
