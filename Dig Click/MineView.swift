@@ -84,7 +84,7 @@ class MineView: UIViewController {
         if !(sender.state == .ended){
             let loc = sender.location(in: view)
             pickIconOutlet.center = loc //puts image at drag gesture
-           for i in 0..<ores.count{ //finds ore
+            for i in 0..<ores.count{ //finds ore
 
                 if (CGRectIntersectsRect(ores[i].imageView.frame, pickIconOutlet.frame)) {//detects collision
                     sender.state = .ended //ends drag
@@ -92,7 +92,7 @@ class MineView: UIViewController {
                     ores[i].health -= Public.pickaxe.damage
                     pickIconOutlet.center = PICKDEFAULT //resets posistion
                     
-                    
+                    //non direct hit ore damage / spread
                     for other in 0..<ores.count{
                         let x1 = ores[other].location.x
                         let x2 = ores[i].location.x
@@ -115,11 +115,11 @@ class MineView: UIViewController {
                 }
 
             }
+            updateView()
         }
-        else{
-            pickIconOutlet.center = PICKDEFAULT
-        }
-        updateView()
+        
+        
+        
     }
 //    @IBAction func pickPanGesture(_ sender: UIPanGestureRecognizer) {
 //        
@@ -135,7 +135,6 @@ class MineView: UIViewController {
 //            pickIconOutlet.center = loc //puts image at drag gesture
 //
 //            for i in 0..<ores.count{ //finds ore
-//
 //                if (CGRectIntersectsRect(ores[i].imageView.frame, pickIconOutlet.frame)) {//detects collision
 //                    sender.state = .ended //ends drag
 //
@@ -164,6 +163,7 @@ class MineView: UIViewController {
 //                }
 //
 //            }
+//            print("pan 1")
 //            updateView()
 //
 //        }

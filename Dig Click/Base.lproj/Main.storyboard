@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I7L-Sa-qHG">
-                                <rect key="frame" x="0.0" y="131" width="390" height="639"/>
+                                <rect key="frame" x="0.0" y="131" width="390" height="713"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="Gbf-ZN-VbO">
                                     <size key="itemSize" width="99" height="115"/>
@@ -154,19 +154,40 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJF-FQ-KRW">
+                                <rect key="frame" x="0.0" y="614" width="390" height="230"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOX-87-4sr">
+                                        <rect key="frame" x="28" y="37" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="xuw-vy-CgM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZKU-PD-SQO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="I7L-Sa-qHG" firstAttribute="leading" secondItem="ZKU-PD-SQO" secondAttribute="leading" id="4Ry-Ar-Eaw"/>
+                            <constraint firstAttribute="bottom" secondItem="iJF-FQ-KRW" secondAttribute="bottom" id="XwT-pH-Sp2"/>
+                            <constraint firstItem="iJF-FQ-KRW" firstAttribute="trailing" secondItem="ZKU-PD-SQO" secondAttribute="trailing" id="a4V-WN-ICE"/>
+                            <constraint firstItem="iJF-FQ-KRW" firstAttribute="leading" secondItem="ZKU-PD-SQO" secondAttribute="leading" id="a7r-NA-Dwm"/>
                             <constraint firstItem="ZKU-PD-SQO" firstAttribute="trailing" secondItem="I7L-Sa-qHG" secondAttribute="trailing" id="ny8-Qe-WdZ"/>
                             <constraint firstItem="I7L-Sa-qHG" firstAttribute="top" secondItem="ZKU-PD-SQO" secondAttribute="top" constant="40" id="o6m-TB-e8z"/>
-                            <constraint firstItem="ZKU-PD-SQO" firstAttribute="bottom" secondItem="I7L-Sa-qHG" secondAttribute="bottom" constant="40" id="uZ4-98-Dtn"/>
+                            <constraint firstItem="ZKU-PD-SQO" firstAttribute="bottom" secondItem="I7L-Sa-qHG" secondAttribute="bottom" constant="-34" id="uZ4-98-Dtn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dy0-0H-vpv"/>
                     <connections>
                         <outlet property="collectionViewOutlet" destination="I7L-Sa-qHG" id="jhr-E6-ufl"/>
+                        <outlet property="infoTabView" destination="iJF-FQ-KRW" id="8dT-Ra-AO1"/>
+                        <outlet property="tabName" destination="TOX-87-4sr" id="5Eq-Vh-AaB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZY-0S-U05" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -358,9 +379,6 @@
                                 <rect key="frame" x="152" y="677.33333333333326" width="93" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="q8M-9a-IgX" appends="YES" id="lE0-0h-7DN"/>
-                                </connections>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inventory Full!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXd-qM-WwG">
                                 <rect key="frame" x="144" y="607" width="107" height="21"/>
@@ -374,7 +392,7 @@
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="PVS-Xn-WQU" appends="YES" id="5GC-yn-VLf"/>
+                            <outletCollection property="gestureRecognizers" destination="GYE-Gb-Tq3" appends="YES" id="6xu-oo-eCs"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="lPM-Fq-Ph9"/>
@@ -386,14 +404,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TxO-QY-aO4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="q8M-9a-IgX">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="GYE-Gb-Tq3" userLabel="New Drag">
                     <connections>
-                        <action selector="pickPanGesture:" destination="xfA-a0-POU" id="oRm-dC-noq"/>
-                    </connections>
-                </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="PVS-Xn-WQU">
-                    <connections>
-                        <action selector="newPanGesture:" destination="xfA-a0-POU" id="QJp-99-Qkn"/>
+                        <action selector="newPanGesture:" destination="xfA-a0-POU" id="xi0-Vr-FUD"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
@@ -604,14 +617,17 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AsH-qk-4zd">
                                 <rect key="frame" x="69" y="334" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nQY-de-lTd">
                                 <rect key="frame" x="155" y="335" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-dl-J2h">
                                 <rect key="frame" x="241" y="335" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coming Soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6d5-NF-inV">
                                 <rect key="frame" x="113" y="433" width="166" height="33"/>
@@ -918,6 +934,9 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -116,7 +116,7 @@ class StoreViewController: UIViewController {
         for i in Public.purchasedPickaxes{
             if i.type == targetType{
                 costLabel.text = "Owned"
-                costLabel.backgroundColor = UIColor.green
+                costLabel.backgroundColor = UIColor(named: "DigGreen")
                 purchaseButton.setTitle("Equip", for: .normal)
                 pickPurchasedState = true
                 if i.type == Public.pickaxe.type{

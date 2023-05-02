@@ -12,13 +12,16 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var collectionViewOutlet: UICollectionView!
     
+    @IBOutlet weak var infoTabView: UIView!
     
+    @IBOutlet weak var tabName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewOutlet.delegate = self
         collectionViewOutlet.dataSource = self
         collectionViewOutlet.reloadData()
+        infoTabView.isHidden = true
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -33,12 +36,18 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
         cell.backgroundColor = UIColor.clear
+        infoTabView.isHidden = true
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
-        cell.backgroundColor = UIColor.systemGreen
+        cell.backgroundColor = UIColor.tintColor
+        print(indexPath)
+        infoTabPopulate(item: Public.inventory[1])
+        infoTabView.isHidden = false
     }
-
+    func infoTabPopulate(item: Drop){
+        tabName.text = item.name
+    }
     
 
 }
