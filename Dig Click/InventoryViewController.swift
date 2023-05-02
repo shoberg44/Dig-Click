@@ -12,6 +12,8 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var collectionViewOutlet: UICollectionView!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewOutlet.delegate = self
@@ -27,6 +29,14 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! InventoryCell
         cell.configure(name: Public.inventory[indexPath.row].name, value: Public.inventory[indexPath.row].value, icon: Public.inventory[indexPath.row].picture)
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
+        cell.backgroundColor = UIColor.clear
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
+        cell.backgroundColor = UIColor.systemGreen
     }
 
     
