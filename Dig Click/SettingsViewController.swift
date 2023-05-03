@@ -23,6 +23,13 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    @IBAction func pickaxeButton(_ sender: UIButton) {
+        Public.pickaxe = Pickaxe(type: .silicon)
+        Public.purchasedPickaxes.append(Pickaxe(type: .silicon))
+    }
+    @IBAction func moneyButton(_ sender: UIButton) {
+        Public.money += 99999
+    }
     @IBAction func randomSeedButton(_ sender: UIButton) {
         switch Public.randomSeed {
         case true:

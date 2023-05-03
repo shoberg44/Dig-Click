@@ -158,7 +158,7 @@
                                 <rect key="frame" x="0.0" y="614" width="390" height="230"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOX-87-4sr">
-                                        <rect key="frame" x="28" y="37" width="42" height="21"/>
+                                        <rect key="frame" x="28" y="37" width="107" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -553,13 +553,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="destructive" translatesAutoresizingMaskIntoConstraints="NO" id="QYS-sy-Hnl">
-                                <rect key="frame" x="127" y="111.99999999999999" width="136" height="34.333333333333329"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Clear Progress"/>
-                                <connections>
-                                    <action selector="clearProgressButton:" destination="oKs-Ry-boJ" eventType="touchUpInside" id="0cQ-9X-XJS"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="EvH-ai-CAr">
                                 <rect key="frame" x="38" y="154" width="314" height="34.333333333333343"/>
                                 <subviews>
@@ -573,7 +566,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Random"/>
                                         <connections>
-                                            <action selector="randomSeedButton:" destination="oKs-Ry-boJ" eventType="touchUpInside" id="Eot-NR-202"/>
+                                            <action selector="randomSeedButton:" destination="oKs-Ry-boJ" eventType="touchUpInside" id="61Y-cC-NfF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7j-kL-jGU">
@@ -586,14 +579,45 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kqy-US-qp7">
+                                <rect key="frame" x="0.0" y="228" width="390" height="34.333333333333314"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="destructive" translatesAutoresizingMaskIntoConstraints="NO" id="QYS-sy-Hnl">
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="34.333333333333336"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Clear Progress">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="clearProgressButton:" destination="oKs-Ry-boJ" eventType="touchUpInside" id="0cQ-9X-XJS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGE-1P-CRu">
+                                        <rect key="frame" x="130" y="0.0" width="130" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="+$99999"/>
+                                        <connections>
+                                            <action selector="moneyButton:" destination="oKs-Ry-boJ" eventType="touchUpInside" id="8Rb-Yh-yrX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOB-rG-jC4">
+                                        <rect key="frame" x="260" y="0.0" width="130" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Pickaxe"/>
+                                        <connections>
+                                            <action selector="pickaxeButton:" destination="oKs-Ry-boJ" eventType="touchUpInside" id="umS-CH-djm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f3S-fj-UpL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Kqy-US-qp7" firstAttribute="leading" secondItem="f3S-fj-UpL" secondAttribute="leading" id="6ke-5h-0df"/>
+                            <constraint firstAttribute="trailing" secondItem="Kqy-US-qp7" secondAttribute="trailing" id="JuJ-iA-ZXR"/>
                             <constraint firstItem="EvH-ai-CAr" firstAttribute="centerX" secondItem="ECs-em-uWg" secondAttribute="centerX" id="Jw8-vb-LLF"/>
-                            <constraint firstItem="EvH-ai-CAr" firstAttribute="centerX" secondItem="QYS-sy-Hnl" secondAttribute="centerX" id="O41-wU-oEL"/>
                             <constraint firstItem="f3S-fj-UpL" firstAttribute="bottom" secondItem="EvH-ai-CAr" secondAttribute="bottom" constant="621.66666666666663" id="TrO-hk-eml"/>
-                            <constraint firstItem="EvH-ai-CAr" firstAttribute="top" secondItem="QYS-sy-Hnl" secondAttribute="bottom" constant="7.6666666666666856" id="pSO-me-Wdp"/>
+                            <constraint firstItem="Kqy-US-qp7" firstAttribute="top" secondItem="EvH-ai-CAr" secondAttribute="bottom" constant="39.670000000000002" id="kO8-1B-fby"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Ch-Uw-89S"/>

@@ -26,10 +26,7 @@ class ViewController: UIViewController {
         if Public.randomSeed{
             Public.seed = UInt64.random(in: 0..<9999999)
         }
-        Public.money += 2000
-        for _ in 0...10{
-            Public.inventory.append(Drop(type: .diamond))
-        }
+       
         
     }
     func load(){
