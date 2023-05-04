@@ -17,6 +17,7 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var tabName: UILabel!
     
     var previousSelection: IndexPath? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewOutlet.delegate = self

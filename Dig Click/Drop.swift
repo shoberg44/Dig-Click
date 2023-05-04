@@ -27,7 +27,8 @@ public class Drop: Codable{
     var isOre: Bool
     var canSell: Bool
     var name: String
-
+    var UUID: Int = Public.inventory.endIndex
+    
     init(value: Double, picture: String, meltable: Bool, weight: Double, type: dropType, isOre: Bool, canSell: Bool, name: String, grade: Int) { //manual
         self.value = value
         self.grade = grade
@@ -128,6 +129,7 @@ public class Drop: Codable{
     func calculateGrade(mean: Float, sd: Float)->Int{
         let distribution = GKGaussianDistribution(randomSource: GKRandomDistribution(lowestValue: 50, highestValue: 100), mean: mean, deviation: sd)
         let pick = distribution.nextInt()
+
         return pick
         
         

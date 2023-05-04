@@ -10,7 +10,6 @@ class InventoryCell : UICollectionViewCell{
     
     @IBOutlet weak var inventoryIcon: UIImageView!
     @IBOutlet weak var inventoryTitle: UILabel!
-    
     func configure(name: String, value: Double, icon: String){
         inventoryTitle.text = name
         inventoryIcon.image = UIImage(named: icon)
