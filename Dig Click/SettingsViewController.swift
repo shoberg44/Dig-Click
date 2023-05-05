@@ -23,6 +23,38 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    @IBAction func itemTestSet(_ sender: UIButton) {
+        var newItems: [Drop] = []
+        var UUIDTrack = 0
+        for _ in 1...5{
+            newItems.append(Drop(type: .coal, UUID: UUIDTrack))
+            UUIDTrack += 1
+        }
+        for _ in 1...5{
+            newItems.append(Drop(type: .copper, UUID: UUIDTrack))
+            UUIDTrack += 1
+        }
+        for _ in 1...5{
+            newItems.append(Drop(type: .diamond, UUID: UUIDTrack))
+            UUIDTrack += 1
+        }
+        for _ in 1...5{
+            newItems.append(Drop(type: .pebble, UUID: UUIDTrack))
+            UUIDTrack += 1
+        }
+        for _ in 1...5{
+            newItems.append(Drop(type: .rarity, UUID: UUIDTrack))
+            UUIDTrack += 1
+        }
+        for _ in 1...5{
+            newItems.append(Drop(type: .diamond, UUID: UUIDTrack))
+            UUIDTrack += 1
+        }
+//        for i in 0..<newItems.count{
+//            print(newItems[i].UUID)
+//        }
+        Public.inventory = newItems
+    }
     @IBAction func pickaxeButton(_ sender: UIButton) {
         Public.pickaxe = Pickaxe(type: .silicon)
         Public.purchasedPickaxes.append(Pickaxe(type: .silicon))

@@ -16,14 +16,14 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var tabName: UILabel!
     
-    var previousSelection: IndexPath? = nil
-    
+    var highlighted: [Int] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewOutlet.delegate = self
         collectionViewOutlet.dataSource = self
         collectionViewOutlet.reloadData()
         infoTabView.isHidden = true
+        highlighted = []
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -32,31 +32,45 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! InventoryCell
-        cell.configure(name: Public.inventory[indexPath.row].name, value: Public.inventory[indexPath.row].value, icon: Public.inventory[indexPath.row].picture)
-        return cell
-    }
-//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
-//
-//        cell.backgroundColor = UIColor.clear
-//        infoTabView.isHidden = true
-//    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
-        if let i = previousSelection{
-            collectionViewOutlet.deselectItem(at: i, animated: true)
-            collectionViewOutlet.cellForItem(at: i)?.backgroundColor = UIColor.clear
-            print("selection replacement at \(i)")
-            previousSelection = indexPath
+        cell.configure(name: Public.inventory[indexPath.row].name, value: Public.inventory[indexPath.row].value, icon: Public.inventory[indexPath.row].picture, UUID: Public.inventory[indexPath.row].UUID)
+        //every cell takes on the dynammicly generated UUID of its corrisponding drop. On state change or redraw it now rehighlights or unhighlights based of its in the "highlighted" list.
+        
+        if highlighted.contains(where: { x in
+            cell.inventoryUUID == x
+        }){
+            cell.backgroundColor = UIColor(named: "DigGreen")
         }
         else{
-            print("first time selection")
-            previousSelection = indexPath
+            cell.backgroundColor = UIColor.clear
         }
-        cell.backgroundColor = UIColor.tintColor
         
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
+        cell.backgroundColor = UIColor.clear
+        highlighted.removeAll { x in
+            cell.inventoryUUID == x
+        }
+        if highlighted.count <= 2{
+            infoTabView.isHidden = false
+        }
+        else{
+            infoTabView.isHidden = true
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
+        highlighted.append(cell.inventoryUUID)
+        cell.backgroundColor = UIColor(named: "DigGreen")
         infoTabPopulate(item: Public.inventory[indexPath[1]])
-        infoTabView.isHidden = false
+        if highlighted.count <= 2{
+            infoTabView.isHidden = false
+        }
+        else{
+            infoTabView.isHidden = true
+        }
+        print("length-> \(highlighted.count)")
     }
     func infoTabPopulate(item: Drop){
         tabName.text = ("\(item.name) \(item.type.rawValue)")

@@ -77,19 +77,28 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sellCell", for: indexPath) as! MarketCell
         
         cell.configure(name: Public.inventory[indexPath.row].name, value: Public.inventory[indexPath.row].value, icon: Public.inventory[indexPath.row].picture, UUID: Public.inventory[indexPath.row].UUID)
-        cell.backgroundColor = UIColor.clear
+        if highlighted.contains(where: { x in
+            cell.inventoryUUID == x
+        }){
+            cell.backgroundColor = UIColor(named: "DigGreen")
+        }
+        else{
+            cell.backgroundColor = UIColor.clear
+        }
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MarketCell
         cell.backgroundColor = UIColor.clear
+        
         highlighted.removeAll { x in
-            cell.inventoryUUID
+            cell.inventoryUUID == x
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MarketCell
-//        highlighted.append(cell.inventoryUUID)
+        highlighted.append(cell.inventoryUUID)
         cell.backgroundColor = UIColor(named: "DigGreen")
     }
     

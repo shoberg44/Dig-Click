@@ -112,7 +112,67 @@ public class Drop: Codable{
             grade = 0
         }
     }
-    
+    init(type: dropType, UUID: Int){ //primary default
+        self.type = type
+        self.name = type.rawValue
+        self.UUID = UUID
+        switch type {
+        case .pebble:
+            value = 0.10
+            meltable = true
+            weight = 1.5
+            canSell = true
+            isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = "pebbles"
+        case .coal:
+            value = 0.33
+            meltable = false
+            weight = 1
+            canSell = true
+            isOre = true
+            picture = "coal"
+        case .copper:
+            value = 1
+            meltable = true
+            weight = 4
+            canSell = true
+            isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = "copper2"
+        case .diamond:
+            value = 25
+            meltable = true
+            weight = 10
+            canSell = true
+            isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = "diamond"
+        case .ruby:
+            value = 10
+            meltable = true
+            weight = 5
+            canSell = true
+            isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = "ruby"
+        case .rarity:
+            value = 0
+            meltable = false
+            weight = 1
+            canSell = true
+            isOre = true
+            grade = 1
+            picture = "rarity"
+        case .unknown:
+            value = -1
+            meltable = false
+            weight = -1
+            canSell = false
+            isOre = false
+            grade = 0
+        }
+    }
     //functions
     
     func meltOre(_ meltInto: Drop)->(Bool,Drop){
