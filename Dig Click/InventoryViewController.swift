@@ -9,21 +9,29 @@ import UIKit
 
 class InventoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
+    @IBOutlet weak var moneyOutlet: UILabel!
     
     @IBOutlet weak var collectionViewOutlet: UICollectionView!
     
+    @IBOutlet weak var rarityOpenButton: UIButton!
     @IBOutlet weak var infoTabView: UIView!
+    @IBOutlet weak var tabGrade: UILabel!
     
+    @IBOutlet weak var tabSellLabel: UILabel!
     @IBOutlet weak var tabName: UILabel!
-    
+    let COMPARECONSTANTMAX: Int = 1
     var highlighted: [Int] = []
+    let formatter = NumberFormatter()
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.numberStyle = .currency
         collectionViewOutlet.delegate = self
         collectionViewOutlet.dataSource = self
         collectionViewOutlet.reloadData()
         infoTabView.isHidden = true
+        collectionViewOutlet.allowsMultipleSelection = true
         highlighted = []
+        updateMoney()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,35 +54,96 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
+        cell.backgroundColor = UIColor(named: "DigGreen")
+        highlighted.append(cell.inventoryUUID)
+        
+        //info tab stuff
+        
+        if (highlighted.count <= COMPARECONSTANTMAX)&&(highlighted.count > 0){
+            infoTabView.isHidden = false
+            infoTabPopulate(item: Public.inventory[indexPath[1]])
+        }
+        else{
+            infoTabView.isHidden = true
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
         cell.backgroundColor = UIColor.clear
-        highlighted.removeAll { x in
-            cell.inventoryUUID == x
+        highlighted.removeAll { m in
+            m == cell.inventoryUUID
         }
-        if highlighted.count <= 2{
+        
+        //info tab stuff
+        if (highlighted.count <= COMPARECONSTANTMAX)&&(highlighted.count > 0){
             infoTabView.isHidden = false
+            infoTabPopulate(item: Public.inventory[indexPath[1]])
         }
         else{
             infoTabView.isHidden = true
         }
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
-        highlighted.append(cell.inventoryUUID)
-        cell.backgroundColor = UIColor(named: "DigGreen")
-        infoTabPopulate(item: Public.inventory[indexPath[1]])
-        if highlighted.count <= 2{
-            infoTabView.isHidden = false
-        }
-        else{
-            infoTabView.isHidden = true
-        }
-        print("length-> \(highlighted.count)")
     }
     func infoTabPopulate(item: Drop){
-        tabName.text = ("\(item.name) \(item.type.rawValue)")
+        if item.type == .rarity{
+            rarityOpenButton.isHidden = false
+        }
+        else{
+            rarityOpenButton.isHidden = true
+        }
+        tabName.text = ("\(item.type.rawValue)")
+        tabGrade.text = ("Grade: \(item.grade)")
+        tabSellLabel.text = ("Value: \(item.value)")
     }
     
 
+    @IBAction func openButton(_ sender: UIButton) {
+        var rand = Int.random(in: 1...2)
+        switch rand {
+        case 1://money
+            let newMoney = Double(Loot(type: .money).money)
+            Public.money += newMoney
+            print("More Money! \(newMoney) additional $")
+            
+        default://drop
+            let newDrop = Loot(type: .drop).drop
+            Public.inventory.append(newDrop)
+            print("New Drop! \(newDrop.name)")
+        }
+        Public.inventory.removeAll { c in
+            c.UUID == highlighted[0]
+        }
+        highlighted.removeAll()
+        if Public.inventory.count != 0{
+            collectionViewOutlet.scrollToItem(at: [0,0], at: .top, animated: true)
+        }
+        infoTabView.isHidden = true
+        save()
+        updateMoney()
+        collectionViewOutlet.reloadData()
+    }
+    func updateMoney(){
+        if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
+            moneyOutlet.text = "\(formattedTipAmount)"
+        }
+    }
+    func save(){
+        print("saved money | inventory")
+        Public.defaults.set(Public.money, forKey: "money")
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+
+            // Encode Note
+            let data = try encoder.encode(Public.inventory)
+
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "inventory")
+
+        } catch {
+            print("Unable to Encode inventory (\(error))")
+        }
+    }
 }

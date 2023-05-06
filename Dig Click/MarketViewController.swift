@@ -95,11 +95,13 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
         highlighted.removeAll { x in
             cell.inventoryUUID == x
         }
+        print("maqrket deselect call")
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MarketCell
         highlighted.append(cell.inventoryUUID)
         cell.backgroundColor = UIColor(named: "DigGreen")
+        print("market select call")
     }
     
     func save(){

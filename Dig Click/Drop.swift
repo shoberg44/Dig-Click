@@ -19,7 +19,7 @@ case unknown = ""
 }
 public class Drop: Codable{
     var value: Double
-    var grade: Int = 50 //a value for a ore that ranges from 50 - 100, 0 for non gradable metal/objects
+    var grade: Int = 100 //a value for a ore that ranges from 50 - 100, 0 for non gradable metal/objects
     var picture: String = "nosign"
     var meltable: Bool
     var weight: Double

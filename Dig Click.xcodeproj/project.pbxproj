@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		580AE0302A063203005F1672 /* Loot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580AE02F2A063203005F1672 /* Loot.swift */; };
+		580AE0322A063BDF005F1672 /* Upgrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580AE0312A063BDF005F1672 /* Upgrade.swift */; };
 		5826BA96299731BE009F2500 /* OreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5826BA95299731BE009F2500 /* OreProtocol.swift */; };
 		5826BA9829973DB4009F2500 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5826BA9729973DB4009F2500 /* Drop.swift */; };
 		E60A934E299BC43F009F633E /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60A934D299BC43F009F633E /* InventoryCell.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		580AE02F2A063203005F1672 /* Loot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loot.swift; sourceTree = "<group>"; };
+		580AE0312A063BDF005F1672 /* Upgrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upgrade.swift; sourceTree = "<group>"; };
 		5826BA95299731BE009F2500 /* OreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OreProtocol.swift; sourceTree = "<group>"; };
 		5826BA9729973DB4009F2500 /* Drop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
 		E60A934D299BC43F009F633E /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				E6E357222992909D00AEC80D /* AppDelegate.swift */,
 				E6E357242992909D00AEC80D /* SceneDelegate.swift */,
 				E6E357282992909D00AEC80D /* Main.storyboard */,
+				580AE02F2A063203005F1672 /* Loot.swift */,
+				580AE0312A063BDF005F1672 /* Upgrade.swift */,
 				E645092629FBF3CB007BE233 /* SettingsViewController.swift */,
 				E628E8F529C1F2BD0053F595 /* MarketViewController.swift */,
 				E628E8F729C1F3C80053F595 /* MarketCell.swift */,
@@ -297,8 +303,10 @@
 				E6A9CD95299D18920078A75F /* Ores.swift in Sources */,
 				E6E357272992909D00AEC80D /* ViewController.swift in Sources */,
 				E65772AE29AF8B5500842B75 /* Pickaxe.swift in Sources */,
+				580AE0302A063203005F1672 /* Loot.swift in Sources */,
 				E6E357232992909D00AEC80D /* AppDelegate.swift in Sources */,
 				E628E8F629C1F2BD0053F595 /* MarketViewController.swift in Sources */,
+				580AE0322A063BDF005F1672 /* Upgrade.swift in Sources */,
 				E628E8F829C1F3C80053F595 /* MarketCell.swift in Sources */,
 				E60A934E299BC43F009F633E /* InventoryCell.swift in Sources */,
 				E60FA261299531F8007EAF04 /* MineView.swift in Sources */,

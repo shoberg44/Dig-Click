@@ -9,15 +9,17 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var devCodeInput: UITextField!
     @IBOutlet weak var randSeedOutlet: UIButton!
     @IBOutlet weak var customSeedTextField: UITextField!
-
+    @IBOutlet weak var layer1DevHorStack: UIStackView!
+    @IBOutlet weak var layer2DevHorStack: UIStackView!
+    var devBool:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customSeedTextField.text = "\(Public.seed)"
         randSeedOutlet.backgroundColor = .clear
-        print(Public.randomSeed)
         if Public.randomSeed{
             randSeedOutlet.backgroundColor = .green
         }
@@ -90,6 +92,31 @@ class SettingsViewController: UIViewController {
         if Public.randomSeed{
             randSeedOutlet.backgroundColor = .clear
             Public.randomSeed = false
+        }
+    }
+    @IBAction func devCodeApply(_ sender: UIButton) {
+        if devCodeInput.text == "menu"{
+            devBool.toggle()
+        }
+        if devBool{
+            layer1DevHorStack.isHidden.toggle()
+            layer2DevHorStack.isHidden.toggle()
+        }
+    }
+    func save(){
+        print("saving items")
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+
+            // Encode Note
+            let data = try encoder.encode(Public.inventory)
+
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "inventory")
+
+        } catch {
+            print("Unable to Encode inventory (\(error))")
         }
     }
 }
