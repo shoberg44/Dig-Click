@@ -189,9 +189,22 @@ public class Drop: Codable{
     func calculateGrade(mean: Float, sd: Float)->Int{
         let distribution = GKGaussianDistribution(randomSource: GKRandomDistribution(lowestValue: 50, highestValue: 100), mean: mean, deviation: sd)
         let pick = distribution.nextInt()
-
         return pick
-        
-        
+    }
+    func findUUID()->Int{ //takes UUID and returns inventory index. -1 if not found
+        for i in 0..<Public.inventory.count{
+            if Public.inventory[i].UUID == self.UUID{
+                return i
+            }
+        }
+        return -1
+    }
+    static func findDrop(targetUUID: Int)->Drop{ //takes uuid and returns the drop from the inventory
+        for i in 0..<Public.inventory.count{
+            if Public.inventory[i].UUID == targetUUID{
+                return Public.inventory[i]
+            }
+        }
+        return Drop(type: .unknown)
     }
 }

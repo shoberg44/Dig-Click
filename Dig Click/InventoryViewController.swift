@@ -9,8 +9,12 @@ import UIKit
 
 class InventoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
+    @IBOutlet weak var meltTitle: UILabel!
     @IBOutlet weak var moneyOutlet: UILabel!
+    @IBOutlet weak var meltGrade: UILabel!
     
+    @IBOutlet weak var meltValue: UILabel!
+    @IBOutlet weak var meltView: UIView!
     @IBOutlet weak var collectionViewOutlet: UICollectionView!
     
     @IBOutlet weak var rarityOpenButton: UIButton!
@@ -19,7 +23,7 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var tabSellLabel: UILabel!
     @IBOutlet weak var tabName: UILabel!
-    let COMPARECONSTANTMAX: Int = 1
+    let COMPARECONSTANTMAX: Int = 2
     var highlighted: [Int] = []
     let formatter = NumberFormatter()
     override func viewDidLoad() {
@@ -67,6 +71,7 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
             infoTabPopulate(item: Public.inventory[indexPath[1]])
         }
         else{
+            print("too many")
             infoTabView.isHidden = true
         }
     }
@@ -80,19 +85,44 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
         //info tab stuff
         if (highlighted.count <= COMPARECONSTANTMAX)&&(highlighted.count > 0){
             infoTabView.isHidden = false
-            infoTabPopulate(item: Public.inventory[indexPath[1]])
+            infoTabPopulate(item: Drop.findDrop(targetUUID: highlighted[0]))
         }
         else{
             infoTabView.isHidden = true
         }
     }
     func infoTabPopulate(item: Drop){
+        var canCombine: Bool = false
         if item.type == .rarity{
             rarityOpenButton.isHidden = false
         }
         else{
             rarityOpenButton.isHidden = true
         }
+        if highlighted.count > 1{//determans meltiblity and prepares it if its needed
+            let baseType: String = Drop.findDrop(targetUUID: highlighted[0]).type.rawValue
+            
+            var meltingDrop: Drop = Drop.findDrop(targetUUID: highlighted[1]) //HEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHERE
+            if (meltingDrop.type.rawValue == baseType){
+                if meltingDrop.meltable && item.meltable{
+                    canCombine = true
+                    print("meltable set")
+                }
+            }
+            if canCombine{
+                meltView.isHidden = false
+                meltGrade.text = ("\(meltingDrop.grade)")
+                meltTitle.text = ("Combing With \(meltingDrop.name)")
+                meltValue.text = ("\(meltingDrop.value)")
+            }
+            else{
+                infoTabView.isHidden = true
+            }
+        }
+        if !canCombine{
+            meltView.isHidden = true
+        }
+        
         tabName.text = ("\(item.type.rawValue)")
         tabGrade.text = ("Grade: \(item.grade)")
         tabSellLabel.text = ("Value: \(item.value)")
@@ -100,7 +130,7 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     
 
     @IBAction func openButton(_ sender: UIButton) {
-        var rand = Int.random(in: 1...2)
+        let rand = Int.random(in: 1...2)
         switch rand {
         case 1://money
             let newMoney = Double(Loot(type: .money).money)
