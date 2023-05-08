@@ -92,17 +92,13 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
     func infoTabPopulate(item: Drop){
+        print(item.type)
         var canCombine: Bool = false
-        if item.type == .rarity{
-            rarityOpenButton.isHidden = false
-        }
-        else{
-            rarityOpenButton.isHidden = true
-        }
+        
         if highlighted.count > 1{//determans meltiblity and prepares it if its needed
-            let baseType: String = Drop.findDrop(targetUUID: highlighted[0]).type.rawValue
+            let baseType: String = Drop.findDrop(targetUUID: highlighted[1]).type.rawValue
             
-            var meltingDrop: Drop = Drop.findDrop(targetUUID: highlighted[1]) //HEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHEREHERE
+            var meltingDrop: Drop = Drop.findDrop(targetUUID: highlighted[0])
             if (meltingDrop.type.rawValue == baseType){
                 if meltingDrop.meltable && item.meltable{
                     canCombine = true
@@ -122,6 +118,13 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
         if !canCombine{
             meltView.isHidden = true
         }
+        if (item.type.rawValue == "rarity")&&(highlighted.count == 1){
+            rarityOpenButton.isHidden = false
+            print("can open!")
+        }
+        else{
+            rarityOpenButton.isHidden = true
+        }
         
         tabName.text = ("\(item.type.rawValue)")
         tabGrade.text = ("Grade: \(item.grade)")
@@ -129,6 +132,29 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
 
+    @IBAction func meltButton(_ sender: UIButton) {
+        var melt1 = Drop.findDrop(targetUUID: highlighted[0])
+        var melt2 = Drop.findDrop(targetUUID: highlighted[1])
+        //print("melt1: \(melt1.grade) | melt2: \(melt2.grade)")
+        var newGrade = melt1.grade + melt2.grade
+        newGrade /= 2
+        
+        var newDrop = Drop(value: melt1.value, picture: melt1.picture, meltable: true, weight: (melt1.weight+melt2.weight), type: melt1.type, isOre: melt1.isOre, canSell: melt1.canSell, name: melt1.name, grade: newGrade)
+        Public.inventory.removeAll { f in
+            f.UUID == melt1.UUID
+        }
+        Public.inventory.removeAll { f in
+            f.UUID == melt2.UUID
+        }
+        highlighted.removeFirst(2)
+        
+        print("\(newDrop.name) is new!")
+        Public.inventory.append(newDrop)
+        
+        infoTabView.isHidden = true
+        
+        collectionViewOutlet.reloadData()
+    }
     @IBAction func openButton(_ sender: UIButton) {
         let rand = Int.random(in: 1...2)
         switch rand {

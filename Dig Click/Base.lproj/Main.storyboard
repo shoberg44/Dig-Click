@@ -208,7 +208,7 @@
                                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYD-1B-pEI">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYD-1B-pEI">
                                                 <rect key="frame" x="15.000000000000004" y="157.66666666666663" width="57.333333333333343" height="57.333333333333343"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="CYD-1B-pEI" secondAttribute="height" multiplier="1:1" id="XkO-c9-Z1d"/>
@@ -216,7 +216,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Melt" cornerStyle="medium"/>
                                                 <connections>
-                                                    <action selector="openButton:" destination="FUU-n5-OfU" eventType="touchUpInside" id="4cz-cv-4HN"/>
+                                                    <action selector="meltButton:" destination="FUU-n5-OfU" eventType="touchUpInside" id="RnM-j7-D8w"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grade: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAc-xm-Xdb">
