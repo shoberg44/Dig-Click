@@ -16,6 +16,7 @@ class Public{
     static var purchasedPickaxes: [Pickaxe] = [pickaxe]
     static var defaults = UserDefaults.standard
     static var seed: UInt64 = UInt64(77)
+    static var inventorySize: Int = 15
 }
 class ViewController: UIViewController {
 
