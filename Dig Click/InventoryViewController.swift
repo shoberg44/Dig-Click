@@ -117,7 +117,7 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
                 meltView.isHidden = false
                 meltGrade.text = ("\(meltingDrop.grade)")
                 meltTitle.text = ("Combing With \(meltingDrop.name)")
-                meltValue.text = ("\(meltingDrop.value)")
+                meltValue.text = ("Value: \((floor(1000*meltingDrop.value)/1000))")
             }
             else{
                 infoTabView.isHidden = true
