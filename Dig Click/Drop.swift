@@ -28,8 +28,10 @@ public class Drop: Codable{
     var canSell: Bool
     var name: String
     var UUID: Int = Public.inventory.endIndex
+    var gradeValueScale: Int = 10
+    var pinned: Bool = false
     
-    init(value: Double, picture: String, meltable: Bool, weight: Double, type: dropType, isOre: Bool, canSell: Bool, name: String, grade: Int) { //manual
+    init(value: Double, picture: String, meltable: Bool, weight: Double, type: dropType, isOre: Bool, canSell: Bool, name: String, grade: Int, gradeValueScale: Int, pinned: Bool) { //manual
         self.value = value
         self.grade = grade
         self.picture = picture
@@ -40,16 +42,8 @@ public class Drop: Codable{
         self.canSell = canSell
         self.type = type
         self.name = name
-    }
-    init(isOre: Bool, name: String, canSell: Bool){ //short custom
-        self.value = 0
-        self.grade = 0
-        self.meltable = false
-        self.weight = 0
-        self.isOre = isOre
-        self.canSell = canSell
-        self.type = .unknown
-        self.name = name
+        self.pinned = pinned
+        gradeAdjustValue(scale: gradeValueScale)
     }
     init(type: dropType){ //primary default
         self.type = type
@@ -59,11 +53,12 @@ public class Drop: Codable{
         case .pebble:
             value = 0.10
             meltable = true
-            weight = 1.5
+            weight = 1
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
             picture = "pebbles"
+            gradeValueScale = 10
         case .coal:
             value = 0.33
             meltable = false
@@ -74,31 +69,104 @@ public class Drop: Codable{
         case .copper:
             value = 1
             meltable = true
-            weight = 4
+            weight = 1
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
             picture = "copper2"
+            gradeAdjustValue(scale: 10)
         case .diamond:
             value = 25
             meltable = true
-            weight = 10
+            weight = 1
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
             picture = "diamond"
+            gradeAdjustValue(scale: 12)
         case .ruby:
             value = 10
             meltable = true
-            weight = 5
+            weight = 1
             canSell = true
             isOre = true
             grade = calculateGrade(mean: 75.5, sd: 10)
             picture = "ruby"
+            gradeAdjustValue(scale: 15)
         case .rarity:
             value = 0
             meltable = false
+            weight = 0
+            canSell = true
+            isOre = true
+            grade = 1
+            picture = "rarity"
+        case .unknown:
+            value = -1
+            meltable = false
+            weight = -1
+            canSell = false
+            isOre = false
+            grade = 0
+            gradeAdjustValue(scale: 10)
+        }
+        if self.meltable{
+            self.weight = calculateWeight()
+        }
+        
+    }
+    init(type: dropType, UUID: Int){ //primary default
+        self.type = type
+        self.name = type.rawValue
+        self.UUID = UUID
+        switch type {
+        case .pebble:
+            value = 0.10
+            meltable = true
             weight = 1
+            canSell = true
+            isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = "pebbles"
+            gradeAdjustValue(scale: 10)
+        case .coal:
+            value = 0.33
+            meltable = false
+            weight = 1
+            canSell = true
+            isOre = true
+            picture = "coal"
+        case .copper:
+            value = 1
+            meltable = true
+            weight = 1
+            canSell = true
+            isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = "copper2"
+            gradeAdjustValue(scale: 10)
+        case .diamond:
+            value = 25
+            meltable = true
+            weight = 1
+            canSell = true
+            isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = "diamond"
+            gradeAdjustValue(scale: 12)
+        case .ruby:
+            value = 10
+            meltable = true
+            weight = 1
+            canSell = true
+            isOre = true
+            grade = calculateGrade(mean: 75.5, sd: 10)
+            picture = "ruby"
+            gradeAdjustValue(scale: 15)
+        case .rarity:
+            value = 0
+            meltable = false
+            weight = 0
             canSell = true
             isOre = true
             grade = 1
@@ -111,66 +179,9 @@ public class Drop: Codable{
             isOre = false
             grade = 0
         }
-    }
-    init(type: dropType, UUID: Int){ //primary default
-        self.type = type
-        self.name = type.rawValue
-        self.UUID = UUID
-        switch type {
-        case .pebble:
-            value = 0.10
-            meltable = true
-            weight = 1.5
-            canSell = true
-            isOre = true
-            grade = calculateGrade(mean: 75.5, sd: 10)
-            picture = "pebbles"
-        case .coal:
-            value = 0.33
-            meltable = false
-            weight = 1
-            canSell = true
-            isOre = true
-            picture = "coal"
-        case .copper:
-            value = 1
-            meltable = true
-            weight = 4
-            canSell = true
-            isOre = true
-            grade = calculateGrade(mean: 75.5, sd: 10)
-            picture = "copper2"
-        case .diamond:
-            value = 25
-            meltable = true
-            weight = 10
-            canSell = true
-            isOre = true
-            grade = calculateGrade(mean: 75.5, sd: 10)
-            picture = "diamond"
-        case .ruby:
-            value = 10
-            meltable = true
-            weight = 5
-            canSell = true
-            isOre = true
-            grade = calculateGrade(mean: 75.5, sd: 10)
-            picture = "ruby"
-        case .rarity:
-            value = 0
-            meltable = false
-            weight = 1
-            canSell = true
-            isOre = true
-            grade = 1
-            picture = "rarity"
-        case .unknown:
-            value = -1
-            meltable = false
-            weight = -1
-            canSell = false
-            isOre = false
-            grade = 0
+        if self.meltable{
+            weight = self.calculateWeight()
+            gradeAdjustValue(scale: self.gradeValueScale)
         }
     }
     //functions
@@ -191,6 +202,12 @@ public class Drop: Codable{
         let pick = distribution.nextInt()
         return pick
     }
+    func calculateWeight()->Double{
+        let distribution = GKGaussianDistribution(randomSource: GKRandomDistribution(lowestValue: 1, highestValue: 200), mean: 100, deviation: 35)
+        var pick: Double = Double(distribution.nextInt())
+        pick /= 100
+        return pick
+    }
     func findUUID()->Int{ //takes UUID and returns inventory index. -1 if not found
         for i in 0..<Public.inventory.count{
             if Public.inventory[i].UUID == self.UUID{
@@ -206,5 +223,15 @@ public class Drop: Codable{
             }
         }
         return Drop(type: .unknown)
+    }
+    func gradeAdjustValue(scale: Int){
+        let GRADEMEAN: Double = 75.5
+        //let GRADESD: Double = 10
+        let SCALECONSTANT = scale //the lower, the quicker a better grade helps. Whemn the difference meets this number, it will double in value.
+        
+        let differenceGrade = Double(self.grade) - GRADEMEAN //0 1 5 10 15 +-
+        let distanceReward: Double = 1 + (differenceGrade / Double(SCALECONSTANT))
+        
+        self.value *= distanceReward
     }
 }

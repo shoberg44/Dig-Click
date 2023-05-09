@@ -33,8 +33,10 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBAction func sellAllButton(_ sender: UIButton) {
         collectionViewOutlet.allowsSelection = true
         for i in 0..<Public.inventory.count{
-            collectionViewOutlet.selectItem(at: [0,i], animated: true, scrollPosition: .top)
-            //update cells somehow
+            if Public.inventory[i].pinned == false{
+                collectionViewOutlet.selectItem(at: [0,i], animated: true, scrollPosition: .top)
+                //update cells somehow
+            }
         }
         sellButton(sender)
     }
@@ -81,6 +83,9 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.inventoryUUID == x
         }){
             cell.backgroundColor = UIColor(named: "DigGreen")
+            if Public.inventory[indexPath.row].pinned{
+                cell.backgroundColor = UIColor.cyan
+            }
         }
         else{
             cell.backgroundColor = UIColor.clear
@@ -101,6 +106,9 @@ class MarketViewController: UIViewController, UICollectionViewDelegate, UICollec
         let cell = collectionView.cellForItem(at: indexPath) as! MarketCell
         highlighted.append(cell.inventoryUUID)
         cell.backgroundColor = UIColor(named: "DigGreen")
+        if Public.inventory[indexPath.row].pinned{
+            cell.backgroundColor = UIColor.cyan
+        }
         print("market select call")
     }
     

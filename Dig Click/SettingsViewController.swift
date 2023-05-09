@@ -44,7 +44,7 @@ class SettingsViewController: UIViewController {
             newItems.append(Drop(type: .pebble, UUID: UUIDTrack))
             UUIDTrack += 1
         }
-        for _ in 1...5{
+        for _ in 1...10{
             newItems.append(Drop(type: .rarity, UUID: UUIDTrack))
             UUIDTrack += 1
         }

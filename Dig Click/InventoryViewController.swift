@@ -9,6 +9,7 @@ import UIKit
 
 class InventoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
+    @IBOutlet weak var tabWeight: UILabel!
     @IBOutlet weak var meltTitle: UILabel!
     @IBOutlet weak var moneyOutlet: UILabel!
     @IBOutlet weak var meltGrade: UILabel!
@@ -26,6 +27,7 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     let COMPARECONSTANTMAX: Int = 2
     var highlighted: [Int] = []
     let formatter = NumberFormatter()
+    var selectedCell: InventoryCell?
     override func viewDidLoad() {
         super.viewDidLoad()
         formatter.numberStyle = .currency
@@ -51,6 +53,9 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
             cell.inventoryUUID == x
         }){
             cell.backgroundColor = UIColor(named: "DigGreen")
+            if Public.inventory[indexPath.row].pinned{
+                cell.backgroundColor = UIColor.cyan
+            }
         }
         else{
             cell.backgroundColor = UIColor.clear
@@ -62,8 +67,11 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! InventoryCell
         cell.backgroundColor = UIColor(named: "DigGreen")
+        if Public.inventory[indexPath.row].pinned{
+            cell.backgroundColor = UIColor.cyan
+        }
         highlighted.append(cell.inventoryUUID)
-        
+        selectedCell = collectionViewOutlet.cellForItem(at: indexPath) as! InventoryCell
         //info tab stuff
         
         if (highlighted.count <= COMPARECONSTANTMAX)&&(highlighted.count > 0){
@@ -128,7 +136,8 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
         
         tabName.text = ("\(item.type.rawValue)")
         tabGrade.text = ("Grade: \(item.grade)")
-        tabSellLabel.text = ("Value: \(item.value)")
+        tabSellLabel.text = ("Value: \((floor(1000*item.value)/1000))")
+        tabWeight.text = ("Weight: \(item.weight)")
     }
     
 
@@ -138,8 +147,10 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
         //print("melt1: \(melt1.grade) | melt2: \(melt2.grade)")
         var newGrade = melt1.grade + melt2.grade
         newGrade /= 2
+        //print("here -> \(melt1.gradeValueScale)")
+        var newDrop = Drop(value: melt1.value, picture: melt1.picture, meltable: true, weight: (melt1.weight+melt2.weight), type: melt1.type, isOre: melt1.isOre, canSell: melt1.canSell, name: melt1.name, grade: newGrade, gradeValueScale: melt1.gradeValueScale, pinned: false)
+        newDrop.gradeAdjustValue(scale: newDrop.gradeValueScale)
         
-        var newDrop = Drop(value: melt1.value, picture: melt1.picture, meltable: true, weight: (melt1.weight+melt2.weight), type: melt1.type, isOre: melt1.isOre, canSell: melt1.canSell, name: melt1.name, grade: newGrade)
         Public.inventory.removeAll { f in
             f.UUID == melt1.UUID
         }
@@ -178,12 +189,32 @@ class InventoryViewController: UIViewController, UICollectionViewDelegate, UICol
         infoTabView.isHidden = true
         save()
         updateMoney()
+        highlighted.removeAll()
         collectionViewOutlet.reloadData()
     }
     func updateMoney(){
         if let formattedTipAmount = formatter.string(from: Public.money as NSNumber) {
             moneyOutlet.text = "\(formattedTipAmount)"
         }
+    }
+    @IBAction func pinButton(_ sender: UIButton) {
+        var current: Drop = Drop(type: .unknown)
+        if highlighted.count == 2{
+            current = Drop.findDrop(targetUUID: highlighted[1])
+        }
+        else if highlighted.count == 1{
+            current = Drop.findDrop(targetUUID: highlighted[0])
+        }
+        
+        if current.pinned{
+            current.pinned = false
+            selectedCell?.backgroundColor = UIColor(named: "DigGreen")
+        }
+        else{
+            current.pinned = true
+            selectedCell?.backgroundColor = UIColor.cyan
+        }
+        
     }
     func save(){
         print("saved money | inventory")

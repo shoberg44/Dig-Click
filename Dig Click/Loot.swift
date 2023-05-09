@@ -27,7 +27,7 @@ public class Loot: Codable{
         }
     }
     func genMoney()->Int{
-        var rand = Int.random(in: 1...4)
+        let rand = Int.random(in: 1...4)
         var distribution: GKGaussianDistribution
         switch rand {
         case 1:
@@ -44,7 +44,8 @@ public class Loot: Codable{
         return distribution.nextInt()
     }
     func genDrop()->Drop{
-        return Igneous(location: CGPoint(), mount: .unmounted).breakEvent()
+        let newDrop = Igneous(location: CGPoint(), mount: .unmounted).breakEvent()
+        return newDrop
     }
 }
 //let distribution = GKGaussianDistribution(randomSource: GKRandomDistribution(lowestValue: 50, highestValue: 100), mean: mean, deviation: sd)
